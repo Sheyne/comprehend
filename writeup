@@ -1,0 +1,21 @@
+------------------------------------------
+----On the topic of sentence parsing------
+------------------------------------------
+
+To parse a sentence you must be able to
+understand the meanings of all the words
+in the sentence and how they fit together.
+
+A parser must also have an environment in
+which the conversation takes place. This
+represents the place where two people are
+talking.
+
+----An example----------------------------
+take the sentence:
+>>>	There is a red dog.
+	
+We take this to mean two things:
+>>>	In the current environment there is a
+	dog.
+>>> The dog is red.
