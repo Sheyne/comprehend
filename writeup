@@ -16,6 +16,19 @@ take the sentence:
 >>>	There is a red dog.
 	
 We take this to mean two things:
->>>	In the current environment there is a
+1>	In the current environment there is a
 	dog.
->>> The dog is red.
+2>	The dog is red.
+
+Lets look at `1' first:
+	What a parser should do is create an
+	instance of a noun (OOP Object) and 
+	place it in the current environment.
+	
+Next in `2':
+	Look in the current environment look
+	for instances of the type dog, if there
+	is only one:
+		take it's highest ranking attribute
+		that can take an instance of color
+		(red) and set this to red.
