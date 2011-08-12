@@ -1,0 +1,59 @@
+====Technical=Specifications===================================================
+first off, a language must define types.
+
+These will not be hardcoded into the system as to allow multiple languages with
+different types to also work.
+
+For english, I'll define the basic type as:
+	noun
+	verb
+	adjective
+	adverb
+	article
+	ect...
+	
+To define a word list its types in parens followed by the name of the word,
+	followed by a newline.
+	
+	ex.
+		(noun) dog
+		
+	for more description of a word, it is posible to further attributes on an
+	
+	indented newline, ex:
+		(noun) dog
+			(noun) fur
+			(adjective) speed
+			(adjective) color = fur /*the `=' indicates that `dog' color is
+									  linked to the `fur' color */
+			
+	This also defined fur as a noun and stated that it has a color attribute.
+	eq. fur is now implied to be defined as
+		(noun) fur
+			(adjective) color
+			
+	if `cat was then defined as:
+		(noun) cat
+			(noun) fur
+			(adjective) color, texture = fur
+	
+	`fur' would now be defined as:
+		(noun) fur
+			(adjective) color
+			(adjective) texture /* note: color and texture could be defined on
+								  one line as (adjective) color, texture */
+	If suffix a definition with `!' we set it as a attribute search point.
+		If for example we set a define a bear as:
+			(noun) bear
+				(noun) fur
+		and set bear's texture to soft, an error is generated because bear does
+			not have a texture attribute.
+		but if we define bear as
+			(noun) bear
+				(noun) fur! /*not the exclamation point*/
+		then set a bear's texture to soft, then, when it is discovered that
+			bear has no texture attribute, it searches through search points 
+			from the top down, and sees if they can take a texture attribute.
+			since fur can the bears fur is set to soft, and no error is
+			generated.
+		
