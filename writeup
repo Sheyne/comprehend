@@ -13,7 +13,7 @@ talking.
 
 ----An example------------------------------
 take the sentence:
->>>	There is a red dog.
+0.1> There is a red dog.
 	
 We take this to mean two things:
 1.1> In the current environment there is a
@@ -51,3 +51,24 @@ And break it into:
 	2.2.2> The destination of the
 	aforementioned run is to the location of
 	the aforementioned Frisbee.
+	
+	
+	
+3.1> a `noun'
+	an instance of a noun is created.
+	
+3.2> the `noun'
+	look for an instance of a noun.
+	
+Looking at `0.1' again:
+0.1> There is a red dog.
+
+Lets break it into entities.
+
+4.1> There is [a red dog]
+
+`a red dog': instantiates a dog. and sets
+	color to red.
+
+`There is': takes an instance of a noun and
+	places it in the current environment.
