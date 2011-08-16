@@ -1,4 +1,50 @@
 ====Technical=Specifications===================================================
+class type
+	words type: sentence 
+	
+class word
+	words type: sentence 
+	
+
+
+==Thoughts==
+
+The dog is red.
+Type: the
+
+typedef struct sp_base{
+	int ref_count;
+} sp_base;
+
+typedef struct sp_type{
+	sp_base super;
+	char* type;
+}sp_type;
+
+typedef struct sp_punctuation{
+	sp_base super;
+}sp_punctuation;
+
+typedef struct sp_word{
+	sp_base super;
+	char* word;
+	sp_type* type;
+} sp_word;
+
+
+typedef sentence sp_base[];
+/* An array of sp_words terminated by a _sp_punctuation. */
+
+sentence _sentence;
+
+sp_type typeOfWord(sp_word word){
+	
+}
+
+
+
+
+====Must=Revaluate=The value of this section===================================
 first off, a language must define types.
 
 These will not be hardcoded into the system as to allow multiple languages with
