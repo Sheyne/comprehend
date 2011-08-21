@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3664815E13FC11DB004CCBB3 /* SPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3664815D13FC11DB004CCBB3 /* SPObject.m */; };
+		3664816113FC11EE004CCBB3 /* SPWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3664816013FC11EE004CCBB3 /* SPWord.m */; };
+		3664816413FC1879004CCBB3 /* SPType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3664816313FC1879004CCBB3 /* SPType.m */; };
+		36B07FC813FB1C0800C1F29A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B07FC713FB1C0800C1F29A /* Cocoa.framework */; };
+		36B07FD213FB1C0800C1F29A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FD013FB1C0800C1F29A /* InfoPlist.strings */; };
+		36B07FD413FB1C0800C1F29A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B07FD313FB1C0800C1F29A /* main.m */; };
+		36B07FD813FB1C0800C1F29A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FD613FB1C0800C1F29A /* Credits.rtf */; };
+		36B07FDB13FB1C0800C1F29A /* Sentence_ParserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B07FDA13FB1C0800C1F29A /* Sentence_ParserAppDelegate.m */; };
+		36B07FDE13FB1C0800C1F29A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FDC13FB1C0800C1F29A /* MainMenu.xib */; };
+		36B07FE713FB1C1E00C1F29A /* sample sentences in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FE413FB1C1E00C1F29A /* sample sentences */; };
+		36B07FE813FB1C1E00C1F29A /* tech specs in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FE513FB1C1E00C1F29A /* tech specs */; };
+		36B07FE913FB1C1E00C1F29A /* writeup in Resources */ = {isa = PBXBuildFile; fileRef = 36B07FE613FB1C1E00C1F29A /* writeup */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3664815C13FC11DB004CCBB3 /* SPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPObject.h; sourceTree = "<group>"; };
+		3664815D13FC11DB004CCBB3 /* SPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPObject.m; sourceTree = "<group>"; };
+		3664815F13FC11EE004CCBB3 /* SPWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWord.h; sourceTree = "<group>"; };
+		3664816013FC11EE004CCBB3 /* SPWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWord.m; sourceTree = "<group>"; };
+		3664816213FC1879004CCBB3 /* SPType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPType.h; sourceTree = "<group>"; };
+		3664816313FC1879004CCBB3 /* SPType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPType.m; sourceTree = "<group>"; };
+		36B07FC313FB1C0800C1F29A /* Sentence Parser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sentence Parser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36B07FC713FB1C0800C1F29A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		36B07FCA13FB1C0800C1F29A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		36B07FCB13FB1C0800C1F29A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		36B07FCC13FB1C0800C1F29A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		36B07FCF13FB1C0800C1F29A /* Sentence Parser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sentence Parser-Info.plist"; sourceTree = "<group>"; };
+		36B07FD113FB1C0800C1F29A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		36B07FD313FB1C0800C1F29A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		36B07FD513FB1C0800C1F29A /* Sentence Parser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sentence Parser-Prefix.pch"; sourceTree = "<group>"; };
+		36B07FD713FB1C0800C1F29A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		36B07FD913FB1C0800C1F29A /* Sentence_ParserAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sentence_ParserAppDelegate.h; sourceTree = "<group>"; };
+		36B07FDA13FB1C0800C1F29A /* Sentence_ParserAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sentence_ParserAppDelegate.m; sourceTree = "<group>"; };
+		36B07FDD13FB1C0800C1F29A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		36B07FE413FB1C1E00C1F29A /* sample sentences */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "sample sentences"; path = "../../sample sentences"; sourceTree = "<group>"; };
+		36B07FE513FB1C1E00C1F29A /* tech specs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tech specs"; path = "../../tech specs"; sourceTree = "<group>"; };
+		36B07FE613FB1C1E00C1F29A /* writeup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = writeup; path = ../../writeup; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36B07FC013FB1C0800C1F29A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36B07FC813FB1C0800C1F29A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3664815B13FC119D004CCBB3 /* Sentence Parser */ = {
+			isa = PBXGroup;
+			children = (
+				3664815C13FC11DB004CCBB3 /* SPObject.h */,
+				3664815D13FC11DB004CCBB3 /* SPObject.m */,
+				3664815F13FC11EE004CCBB3 /* SPWord.h */,
+				3664816013FC11EE004CCBB3 /* SPWord.m */,
+				3664816213FC1879004CCBB3 /* SPType.h */,
+				3664816313FC1879004CCBB3 /* SPType.m */,
+			);
+			name = "Sentence Parser";
+			sourceTree = "<group>";
+		};
+		36B07FB813FB1C0700C1F29A = {
+			isa = PBXGroup;
+			children = (
+				36B07FCD13FB1C0800C1F29A /* Sentence Parser */,
+				36B07FC613FB1C0800C1F29A /* Frameworks */,
+				36B07FC413FB1C0800C1F29A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		36B07FC413FB1C0800C1F29A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36B07FC313FB1C0800C1F29A /* Sentence Parser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36B07FC613FB1C0800C1F29A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36B07FC713FB1C0800C1F29A /* Cocoa.framework */,
+				36B07FC913FB1C0800C1F29A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36B07FC913FB1C0800C1F29A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36B07FCA13FB1C0800C1F29A /* AppKit.framework */,
+				36B07FCB13FB1C0800C1F29A /* CoreData.framework */,
+				36B07FCC13FB1C0800C1F29A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		36B07FCD13FB1C0800C1F29A /* Sentence Parser */ = {
+			isa = PBXGroup;
+			children = (
+				3664815B13FC119D004CCBB3 /* Sentence Parser */,
+				36B07FD913FB1C0800C1F29A /* Sentence_ParserAppDelegate.h */,
+				36B07FDA13FB1C0800C1F29A /* Sentence_ParserAppDelegate.m */,
+				36B07FDC13FB1C0800C1F29A /* MainMenu.xib */,
+				36B07FCE13FB1C0800C1F29A /* Supporting Files */,
+			);
+			path = "Sentence Parser";
+			sourceTree = "<group>";
+		};
+		36B07FCE13FB1C0800C1F29A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				36B07FE413FB1C1E00C1F29A /* sample sentences */,
+				36B07FE513FB1C1E00C1F29A /* tech specs */,
+				36B07FE613FB1C1E00C1F29A /* writeup */,
+				36B07FCF13FB1C0800C1F29A /* Sentence Parser-Info.plist */,
+				36B07FD013FB1C0800C1F29A /* InfoPlist.strings */,
+				36B07FD313FB1C0800C1F29A /* main.m */,
+				36B07FD513FB1C0800C1F29A /* Sentence Parser-Prefix.pch */,
+				36B07FD613FB1C0800C1F29A /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		36B07FC213FB1C0800C1F29A /* Sentence Parser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36B07FE113FB1C0800C1F29A /* Build configuration list for PBXNativeTarget "Sentence Parser" */;
+			buildPhases = (
+				36B07FBF13FB1C0800C1F29A /* Sources */,
+				36B07FC013FB1C0800C1F29A /* Frameworks */,
+				36B07FC113FB1C0800C1F29A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sentence Parser";
+			productName = "Sentence Parser";
+			productReference = 36B07FC313FB1C0800C1F29A /* Sentence Parser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36B07FBA13FB1C0700C1F29A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Sheyne Anderson";
+			};
+			buildConfigurationList = 36B07FBD13FB1C0700C1F29A /* Build configuration list for PBXProject "Sentence Parser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 36B07FB813FB1C0700C1F29A;
+			productRefGroup = 36B07FC413FB1C0800C1F29A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				36B07FC213FB1C0800C1F29A /* Sentence Parser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		36B07FC113FB1C0800C1F29A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36B07FD213FB1C0800C1F29A /* InfoPlist.strings in Resources */,
+				36B07FD813FB1C0800C1F29A /* Credits.rtf in Resources */,
+				36B07FDE13FB1C0800C1F29A /* MainMenu.xib in Resources */,
+				36B07FE713FB1C1E00C1F29A /* sample sentences in Resources */,
+				36B07FE813FB1C1E00C1F29A /* tech specs in Resources */,
+				36B07FE913FB1C1E00C1F29A /* writeup in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36B07FBF13FB1C0800C1F29A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36B07FD413FB1C0800C1F29A /* main.m in Sources */,
+				36B07FDB13FB1C0800C1F29A /* Sentence_ParserAppDelegate.m in Sources */,
+				3664815E13FC11DB004CCBB3 /* SPObject.m in Sources */,
+				3664816113FC11EE004CCBB3 /* SPWord.m in Sources */,
+				3664816413FC1879004CCBB3 /* SPType.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		36B07FD013FB1C0800C1F29A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36B07FD113FB1C0800C1F29A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		36B07FD613FB1C0800C1F29A /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36B07FD713FB1C0800C1F29A /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		36B07FDC13FB1C0800C1F29A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36B07FDD13FB1C0800C1F29A /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		36B07FDF13FB1C0800C1F29A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		36B07FE013FB1C0800C1F29A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		36B07FE213FB1C0800C1F29A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sentence Parser/Sentence Parser-Prefix.pch";
+				INFOPLIST_FILE = "Sentence Parser/Sentence Parser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		36B07FE313FB1C0800C1F29A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sentence Parser/Sentence Parser-Prefix.pch";
+				INFOPLIST_FILE = "Sentence Parser/Sentence Parser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36B07FBD13FB1C0700C1F29A /* Build configuration list for PBXProject "Sentence Parser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36B07FDF13FB1C0800C1F29A /* Debug */,
+				36B07FE013FB1C0800C1F29A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36B07FE113FB1C0800C1F29A /* Build configuration list for PBXNativeTarget "Sentence Parser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36B07FE213FB1C0800C1F29A /* Debug */,
+				36B07FE313FB1C0800C1F29A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36B07FBA13FB1C0700C1F29A /* Project object */;
+}
