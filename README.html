@@ -61,47 +61,5 @@ if(doer==env->noun("the boy")){ /* should evaluate to true */
 	printf("The ball is being thrown by the boy.");
 }
 </pre>
-
-
-<h3>Ideas for reference counting:</h3>
-<pre class="sh_c">
-id make_object(void *obj);
-struct id{
-	int ref_count;
-	void *object;
-};
-typedef struct id * id;
-id retain(id obj);
-id release(id obj);
-static const id nil=make_obj(NULL);
-</pre>
-.c:
-<pre class="sh_c">
-id make_object(void *obj){
-	id ret=malloc(sizeof(struct id));
-	ret->ref_count=1;
-	ret->object=obj;
-	return ret;
-}
-id retain(id obj){
-	++obj->ref_count;
-	return obj;
-}
-id release(id obj){
-	if((--(obj->ref_count))<=0){
-		free(obj->object);
-		free(obj);
-	}
-	return nil;
-}
-</pre>
-now say we want a `make_noun` function, we can:
-<pre class="sh_c">
-id make_noun(char *tag){
-	struct noun *ret=malloc(sizeof(struct noun));
-	((struct word *)ret)->tag=tag;
-	return make_object(ret);
-}
-</pre>
 </body>
 </html>
