@@ -4,25 +4,46 @@ The link grammar project will significantly help the project.
 
 Taking a parsed sentence and doing something useful with it is the new goal.
 
-given a dictionary file:
 
 ==actions.dictionary==
-human: pause, (talk & (walk, run, stand, climb))
-dog cat: (run, sleep) & flick tail.
-dog: bark
-cat: meow
-car: drive, park, race, floor it
-
-note:
-',' actions stop the previous action, but keep a memory of it,
-'&' actions can be performed concurrently.
-
-The memory of previous actions can be useful in situations such as:
-
-	The man was sorting papers. A loud sound came from the outside. The man
-		paused and looked up. He then returned to [what he was doing].
-
-	Note the bracketed part.
-												  
-	The A.I. must be able to answer the question (it itself may often ask),
-		"what was he doing?" 
+	human: pause, (talk & (walk, run, stand, climb))
+	dog cat: (run, sleep) & flick tail.
+	dog: bark
+	cat: meow
+	car: drive, park, race, floor it
+	
+	note:
+	',' actions stop the previous action, but keep a memory of it,
+	'&' actions can be performed concurrently.
+	
+	The memory of previous actions can be useful in situations such as:
+	
+		The man was sorting papers. A loud sound came from the outside. The man
+			paused and looked up. He then returned to [what he was doing].
+	
+		Note the bracketed part.
+													  
+		The A.I. must be able to answer the question (it itself may often ask),
+			"what was he doing?"
+			
+			
+	genetic action dictionary?
+	
+			
+==reverse entity lookup==
+	Ask previous sentences, who is he? What is it?
+	
+1	There is a red dog. 		(make: 0x01. 0x01 is red)
+2	It is asleep. 				(0x01 is asleep)
+3	There is a cat. 			(make: 0x02)
+4	The cat meows. 				(0x02 meows)
+5	The dog wakes up and barks. (0x01 wakes up. 0x01 barks.)
+6	There is a cat. 			(make: 0x03)
+7	The cat falls asleep. 		(0x?? falls asleep)
+8			(Which cat?)	       ^^
+9			The first one. 		(0x02 (answer))
+		
+	In the case of sentences 1 and 2, sentence 2 asks 1, what is it. 1 responds:
+		The dog I just made (0x01).
+	
+	In the case of 6 and 7, one of two things can happen when 
