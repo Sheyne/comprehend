@@ -1,3 +1,5 @@
+Documentation can be found [here](https://github.com/Sheyne/comprehend/wiki "On the wiki").
+
 #The basics:
 with this defined:
 
