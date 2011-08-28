@@ -6,6 +6,11 @@
 		<style>
 			pre{
 				border:1px dashed grey;
+				overflow:auto;
+			}
+			pre.main_text{
+				border:none;
+				font:inherit;
 			}
 		</style>
 	</head>
@@ -27,7 +32,7 @@ struct noun{
 struct verb{
 	struct word;
 	struct noun *doer;
-	struct noun *beer;
+	struct noun *object;
 	struct adverb adverbs[0];
 };
 </pre>
@@ -61,5 +66,21 @@ if(doer==env->noun("the boy")){ /* should evaluate to true */
 	printf("The ball is being thrown by the boy.");
 }
 </pre>
+
+The `env->noun(str)` function is the key part here. It's looks for a noun in `env`, 
+and creates an instance if it cannot find one. It returns this. If multiple nouns
+match str, it returns a NULL terminated array of nouns.<br /><br />
+
+`env->verb(type, object)` creates a new verb with type, and sets object to be the
+verb's object.
+
+
+<pre class="sh_c">
+struct noun *object  = env->noun("the ball");
+struct verb *action  = env->verb("threw", object);
+</pre>
+In the above example, `action->object` is "the ball". This corresponds to the 
+english statement, `who "threw" "the ball"?`
+
 </body>
 </html>
