@@ -18,6 +18,7 @@ with this defined:
 		struct adverb adverbs[0];
 	};
 then:
+
 		+----------------Xp----------------+
 		+-----Wd----+      +-----Os----+   |
 		|      +-Ds-+--Ss--+     +--Ds-+   |
