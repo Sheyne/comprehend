@@ -1,4 +1,4 @@
-##The basics:
+#The basics:
 with this defined:
 
 	struct word{
