@@ -1,5 +1,5 @@
 Design criteria can be found [here](https://github.com/Sheyne/comprehend/wiki "On the wiki").
-#The basics:
+###The basics:
 
 		+----------------Xp----------------+
 		+-----Wd----+      +-----Os----+   |
