@@ -7,12 +7,13 @@
 //
 
 #include <stdio.h>
+#include "env.h"
 
 int main (int argc, const char * argv[])
 {
-
-	// insert code here...
-	printf("Hello, World!\n");
-    return 0;
+	struct env *enviroment=env_make("Hello");
+	printf("the id is: %s\n", enviroment->id);
+	env_free(enviroment);
+	return 0;
 }
 

@@ -49,5 +49,11 @@
 #include "utilities.h"
 #include "word-file.h"
 
+/*
+--I commented this out to get it to compile  --*DS*
+#include "alink.h"
+#include "translator.h"
+*/
+
 
 #endif
