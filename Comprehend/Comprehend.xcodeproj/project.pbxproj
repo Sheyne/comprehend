@@ -80,7 +80,6 @@
 		365B0CBC140ACF8600FE59B5 = {
 			isa = PBXGroup;
 			children = (
-				368A45F9140B2FDF00A5CBEE /* comprehend.api */,
 				365B0CD1140ACF8600FE59B5 /* Comprehend */,
 				365B0CEE140ACFA100FE59B5 /* test */,
 				365B0CCA140ACF8600FE59B5 /* Frameworks */,
@@ -120,6 +119,7 @@
 		365B0CD1140ACF8600FE59B5 /* Comprehend */ = {
 			isa = PBXGroup;
 			children = (
+				368A45F9140B2FDF00A5CBEE /* api */,
 				365B0CDD140ACF8600FE59B5 /* ComprehendAppDelegate.h */,
 				365B0CDE140ACF8600FE59B5 /* ComprehendAppDelegate.m */,
 				365B0CE0140ACF8700FE59B5 /* MainMenu.xib */,
@@ -149,13 +149,14 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		368A45F9140B2FDF00A5CBEE /* comprehend.api */ = {
+		368A45F9140B2FDF00A5CBEE /* api */ = {
 			isa = PBXGroup;
 			children = (
 				368A45FB140B300D00A5CBEE /* enviroment.h */,
 				368A45FC140B301A00A5CBEE /* enviroment.c */,
 			);
-			name = comprehend.api;
+			name = api;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
