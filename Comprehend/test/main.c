@@ -14,7 +14,8 @@
 
 int main (int argc, const char * argv[])
 {
-	struct enviroment *env;
+	Dictionary	  dict;
+	Parse_Options opts;
     Sentence      sent;
     Linkage       linkage;
     char *        diagram;
@@ -24,22 +25,24 @@ int main (int argc, const char * argv[])
 		"Computers are useless; they can only give you answers -- Pablo Picasso."};
 	
     setlocale(LC_ALL, "");
-	env=enviroment_create(NULL, NULL);
-	parse_options_set_verbosity(enviroment_get_parse_options(env), 0);
-	if(enviroment_get_dictionary(env))
+	dict=dictionary_create_lang("en");
+	opts=parse_options_create();
+	parse_options_set_verbosity(opts, 0);
+	if(dict)
 		for (i=0; i<2; ++i) 
-			if((sent = sentence_create(input_string[i], enviroment_get_dictionary(env)))){
-				sentence_split(sent, enviroment_get_parse_options(env));
-				num_linkages = sentence_parse(sent, enviroment_get_parse_options(env));
+			if((sent = sentence_create(input_string[i], dict))){
+				sentence_split(sent, opts);
+				num_linkages = sentence_parse(sent, opts);
 				if (num_linkages > 0) {
-					linkage = linkage_create(0, sent, enviroment_get_parse_options(env));
+					linkage = linkage_create(0, sent, opts);
 					printf("%s\n", diagram = linkage_print_diagram(linkage));
 					linkage_free_diagram(diagram);
 					linkage_delete(linkage);
 				}
 				sentence_delete(sent);
 			}
-	enviroment_delete(env);
+	dictionary_delete(dict);
+	parse_options_delete(opts);
     return 0;
 }
 
