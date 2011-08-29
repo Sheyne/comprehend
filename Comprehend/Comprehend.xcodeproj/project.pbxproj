@@ -11,14 +11,12 @@
 		365B0CD6140ACF8600FE59B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */; };
 		365B0CD8140ACF8600FE59B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CD7140ACF8600FE59B5 /* main.m */; };
 		365B0CDC140ACF8600FE59B5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CDA140ACF8600FE59B5 /* Credits.rtf */; };
-		365B0CDF140ACF8600FE59B5 /* ComprehendAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CDE140ACF8600FE59B5 /* ComprehendAppDelegate.m */; };
 		365B0CE2140ACF8700FE59B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CE0140ACF8700FE59B5 /* MainMenu.xib */; };
 		365B0CF0140ACFA100FE59B5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CEF140ACFA100FE59B5 /* main.c */; };
 		365B0CF2140ACFA100FE59B5 /* test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 365B0CF1140ACFA100FE59B5 /* test.1 */; };
-		368A45FD140B301A00A5CBEE /* enviroment.c in Sources */ = {isa = PBXBuildFile; fileRef = 368A45FC140B301A00A5CBEE /* enviroment.c */; };
-		368A45FE140B303E00A5CBEE /* enviroment.c in Sources */ = {isa = PBXBuildFile; fileRef = 368A45FC140B301A00A5CBEE /* enviroment.c */; };
 		368A4601140B307200A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
 		368A4602140B307600A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
+		368A4608140B34E600A5CBEE /* comprehend.c in Sources */ = {isa = PBXBuildFile; fileRef = 368A4607140B34E600A5CBEE /* comprehend.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,15 +43,13 @@
 		365B0CD7140ACF8600FE59B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		365B0CD9140ACF8600FE59B5 /* Comprehend-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Comprehend-Prefix.pch"; sourceTree = "<group>"; };
 		365B0CDB140ACF8600FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		365B0CDD140ACF8600FE59B5 /* ComprehendAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComprehendAppDelegate.h; sourceTree = "<group>"; };
-		365B0CDE140ACF8600FE59B5 /* ComprehendAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComprehendAppDelegate.m; sourceTree = "<group>"; };
 		365B0CE1140ACF8700FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		365B0CEC140ACFA100FE59B5 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
 		365B0CEF140ACFA100FE59B5 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		365B0CF1140ACFA100FE59B5 /* test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test.1; sourceTree = "<group>"; };
-		368A45FB140B300D00A5CBEE /* enviroment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enviroment.h; path = Comprehend/api/enviroment.h; sourceTree = "<group>"; };
-		368A45FC140B301A00A5CBEE /* enviroment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = enviroment.c; path = Comprehend/api/enviroment.c; sourceTree = "<group>"; };
 		368A45FF140B306500A5CBEE /* liblink-grammar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "liblink-grammar.dylib"; path = "usr/local/lib/liblink-grammar.dylib"; sourceTree = SDKROOT; };
+		368A4606140B34D400A5CBEE /* comprehend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = comprehend.h; path = api/comprehend.h; sourceTree = "<group>"; };
+		368A4607140B34E600A5CBEE /* comprehend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = comprehend.c; path = api/comprehend.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +76,7 @@
 		365B0CBC140ACF8600FE59B5 = {
 			isa = PBXGroup;
 			children = (
+				368A45F9140B2FDF00A5CBEE /* api */,
 				365B0CD1140ACF8600FE59B5 /* Comprehend */,
 				365B0CEE140ACFA100FE59B5 /* test */,
 				365B0CCA140ACF8600FE59B5 /* Frameworks */,
@@ -119,9 +116,6 @@
 		365B0CD1140ACF8600FE59B5 /* Comprehend */ = {
 			isa = PBXGroup;
 			children = (
-				368A45F9140B2FDF00A5CBEE /* api */,
-				365B0CDD140ACF8600FE59B5 /* ComprehendAppDelegate.h */,
-				365B0CDE140ACF8600FE59B5 /* ComprehendAppDelegate.m */,
 				365B0CE0140ACF8700FE59B5 /* MainMenu.xib */,
 				365B0CD2140ACF8600FE59B5 /* Supporting Files */,
 			);
@@ -152,11 +146,10 @@
 		368A45F9140B2FDF00A5CBEE /* api */ = {
 			isa = PBXGroup;
 			children = (
-				368A45FB140B300D00A5CBEE /* enviroment.h */,
-				368A45FC140B301A00A5CBEE /* enviroment.c */,
+				368A4606140B34D400A5CBEE /* comprehend.h */,
+				368A4607140B34E600A5CBEE /* comprehend.c */,
 			);
 			name = api;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,8 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				365B0CD8140ACF8600FE59B5 /* main.m in Sources */,
-				365B0CDF140ACF8600FE59B5 /* ComprehendAppDelegate.m in Sources */,
-				368A45FD140B301A00A5CBEE /* enviroment.c in Sources */,
+				368A4608140B34E600A5CBEE /* comprehend.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				368A45FE140B303E00A5CBEE /* enviroment.c in Sources */,
 				365B0CF0140ACFA100FE59B5 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
