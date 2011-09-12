@@ -12,11 +12,12 @@
 		365B0CD8140ACF8600FE59B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CD7140ACF8600FE59B5 /* main.m */; };
 		365B0CDC140ACF8600FE59B5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CDA140ACF8600FE59B5 /* Credits.rtf */; };
 		365B0CE2140ACF8700FE59B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CE0140ACF8700FE59B5 /* MainMenu.xib */; };
-		365B0CF0140ACFA100FE59B5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CEF140ACFA100FE59B5 /* main.c */; };
+		365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CEF140ACFA100FE59B5 /* main.cpp */; };
 		365B0CF2140ACFA100FE59B5 /* test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 365B0CF1140ACFA100FE59B5 /* test.1 */; };
 		368A4601140B307200A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
 		368A4602140B307600A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
-		368A4608140B34E600A5CBEE /* comprehend.c in Sources */ = {isa = PBXBuildFile; fileRef = 368A4607140B34E600A5CBEE /* comprehend.c */; };
+		368A460A140B35B400A5CBEE /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 368A4609140B35B400A5CBEE /* comprehend.cpp */; };
+		368A460B140B380A00A5CBEE /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 368A4609140B35B400A5CBEE /* comprehend.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,11 +46,11 @@
 		365B0CDB140ACF8600FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		365B0CE1140ACF8700FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		365B0CEC140ACFA100FE59B5 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
-		365B0CEF140ACFA100FE59B5 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		365B0CEF140ACFA100FE59B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		365B0CF1140ACFA100FE59B5 /* test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test.1; sourceTree = "<group>"; };
 		368A45FF140B306500A5CBEE /* liblink-grammar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "liblink-grammar.dylib"; path = "usr/local/lib/liblink-grammar.dylib"; sourceTree = SDKROOT; };
 		368A4606140B34D400A5CBEE /* comprehend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = comprehend.h; path = api/comprehend.h; sourceTree = "<group>"; };
-		368A4607140B34E600A5CBEE /* comprehend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = comprehend.c; path = api/comprehend.c; sourceTree = "<group>"; };
+		368A4609140B35B400A5CBEE /* comprehend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comprehend.cpp; path = api/comprehend.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +138,7 @@
 		365B0CEE140ACFA100FE59B5 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				365B0CEF140ACFA100FE59B5 /* main.c */,
+				365B0CEF140ACFA100FE59B5 /* main.cpp */,
 				365B0CF1140ACFA100FE59B5 /* test.1 */,
 			);
 			path = test;
@@ -147,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				368A4606140B34D400A5CBEE /* comprehend.h */,
-				368A4607140B34E600A5CBEE /* comprehend.c */,
+				368A4609140B35B400A5CBEE /* comprehend.cpp */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -234,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				365B0CD8140ACF8600FE59B5 /* main.m in Sources */,
-				368A4608140B34E600A5CBEE /* comprehend.c in Sources */,
+				368A460A140B35B400A5CBEE /* comprehend.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				365B0CF0140ACFA100FE59B5 /* main.c in Sources */,
+				365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */,
+				368A460B140B380A00A5CBEE /* comprehend.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

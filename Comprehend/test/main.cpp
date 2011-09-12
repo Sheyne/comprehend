@@ -10,17 +10,22 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <link-includes.h>
-#include "enviroment.h"
+#include "comprehend.h"
 
 int main (int argc, const char * argv[])
 {
+	Enviroment *e=Enviroment::standard_enviroment();
+	e->nouns;
+	Noun word("the");
+	Noun otherWord("th1e");
+	printf("name of the word: %s cmp: %d",word.name,word==otherWord);
 	Dictionary	  dict;
 	Parse_Options opts;
     Sentence      sent;
     Linkage       linkage;
     char *        diagram;
     int           i, num_linkages;
-    char *        input_string[] = {
+    const char *        input_string[] = {
 		"Grammar is useless because there is nothing to say -- Gertrude Stein.",
 		"Computers are useless; they can only give you answers -- Pablo Picasso."};
 	
