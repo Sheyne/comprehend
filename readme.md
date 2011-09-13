@@ -1,5 +1,6 @@
 Design criteria can be found [here](https://github.com/Sheyne/comprehend/wiki "On the wiki").
-###The basics:
+
+##The basics:
 Given the sentence, in past tense:
 
 	The boy threw the ball.
@@ -37,3 +38,20 @@ All these sentences should become something like:
 	s.subject=env.noun("the ball")
 	s.when=time.range(-∞, time.now(), inclusive=False)
 	s.original_tense=null /*here I still need to come up with how to display this.*/
+
+
+##Example cases:
+###Present:
+	Simple:			The boy throws the ball.
+	Progressive:	The ball is thrown by the boy.
+
+###Past:	
+	Simple:			The boy threw the ball.
+	Progressive:	The ball was thrown by the boy.
+
+###Future:	
+	Simple:			The boy will throw the ball.
+	Progressive:	The ball will be thrown by the boy.
+
+Article for easy refresh on verb tenses (here)[http://leo.stcloudstate.edu/grammar/tenses.html].
+A pattern forms, progressive, the subject and object flip. The verb is more complicated, `throw`, present tense, is simple, and what everything should be refined down too. Present Progressing (`thrown`) is prefixed by an `is` and is constant between the the other tenses that are progressive. This allows us to determine tense based solely on the prefix. (`is`, `was`, `will be`).
