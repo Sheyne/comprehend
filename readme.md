@@ -33,7 +33,7 @@ and in the past progressive:
 	
 	The ball was thrown by the boy.
 	
-We see there are two sentences are equivalent, except that the subject and object switch places.
+We see there are two sentences are equivalent, except that the subject and object switch.
 
 The system will automatically convert sentences to match the former. This makes an SVO set with "the boy" as the subject, "threw" as the verb, and "the ball" as the object.
 
