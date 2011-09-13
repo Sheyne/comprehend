@@ -1,30 +1,5 @@
 Design criteria can be found [here](https://github.com/Sheyne/comprehend/wiki "On the wiki").
 ###The basics:
-
-		+----------------Xp----------------+
-		+-----Wd----+      +-----Os----+   |
-		|      +-Ds-+--Ss--+     +--Ds-+   |
-		|      |    |      |     |     |   |
-	LEFT-WALL the boy.n threw.v the ball.n . 
-
-should loosely translate to:
-
-	struct environment *env = current_environment();
-	
-	struct svo *subject_verb_object = {
-									   env->noun("the boy"),
-									   env->verb("threw"),
-									   env->noun("the ball")
-									  };
-
-
-
-
-
-
-
-
-
 Given the sentence, in past tense:
 
 	The boy threw the ball.
@@ -42,3 +17,23 @@ Given the sentence:
 	The ball was thrown.
 
 This reformatting would result in a sentence with no subject. This is acceptable.
+
+A sentence also has a tense associated with it. 
+
+	The boy threw the ball.
+	
+implies that
+
+`The boy throws the ball.` or `The boy is throwing the ball.`
+	
+was true sometime in the past. The only difference is tense.
+
+All these sentences should become something like:
+
+	Enviroment env=Enviroment.current_enviroment()
+	Sentence s=Sentence(enviroment=env)
+	s.subject=env.noun("the boy")
+	s.verb=env.verb("throw")
+	s.subject=env.noun("the ball")
+	s.when=env.noun("before now")
+	s.original_tense=null /*here I still need to come up with how to display this.*/
