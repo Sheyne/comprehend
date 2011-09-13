@@ -53,5 +53,5 @@ All these sentences should become something like:
 	Simple:			The boy will throw the ball.
 	Progressive:	The ball will be thrown by the boy.
 
-Article for easy refresh on verb tenses (here)[http://leo.stcloudstate.edu/grammar/tenses.html].
+Article for easy refresh on verb tenses [here](http://leo.stcloudstate.edu/grammar/tenses.html).
 A pattern forms, progressive, the subject and object flip. The verb is more complicated, `throw`, present tense, is simple, and what everything should be refined down too. Present Progressing (`thrown`) is prefixed by an `is` and is constant between the the other tenses that are progressive. This allows us to determine tense based solely on the prefix. (`is`, `was`, `will be`).
