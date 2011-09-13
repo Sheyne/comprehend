@@ -33,7 +33,7 @@ All these sentences should become something like:
 	Enviroment env=Enviroment.current_enviroment()
 	Sentence s=Sentence(enviroment=env)
 	s.subject=env.noun("the boy")
-	s.verb=env.verb("throw")
+	s.verb=env.verb("threw")  #internally becomes the infinitive.
 	s.subject=env.noun("the ball")
-	s.when=env.time((-∞, time.now()), inclusive=False)
+	s.when=time.range(-∞, time.now(), inclusive=False)
 	s.original_tense=null /*here I still need to come up with how to display this.*/
