@@ -35,5 +35,5 @@ All these sentences should become something like:
 	s.subject=env.noun("the boy")
 	s.verb=env.verb("throw")
 	s.subject=env.noun("the ball")
-	s.when=env.noun("before now")
+	s.when=env.time((-∞, time.now()), inclusive=False)
 	s.original_tense=null /*here I still need to come up with how to display this.*/
