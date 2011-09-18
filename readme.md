@@ -15,18 +15,18 @@ We see there are two sentences are equivalent, except that the subject and objec
 ##Object Structure.
 A sentence structure has several components:
 
-`Sentence`:** An object for storing a sentence. 
+`Sentence`: An object for storing a sentence. 
  
- - `doer` `Noun`
+ - `doer` `Noun`:
  	- What preformed an action.
- - `doee` `Noun`
+ - `doee` `Noun`:
  	- What had an action performed on it.
- - `verb` `Verb`
+ - `verb` `Verb`:
  	- What the action was.
- - `prepositions` `Preposition` array
+ - `prepositions` `Preposition` array:
  	- Any conditions, or additional information. 
 
-`Word`:** Base class for all words
+`Word`: Base class for all words
 
  - `word` `String`:
  	 - A `String` of the `Word`, and its most basic form.
@@ -35,21 +35,21 @@ A sentence structure has several components:
  - `linked_words` `Word` array:
  	 - Any links this word had.
 
-`Noun` (`Word`):** Class for storing nouns
+`Noun` (`Word`): Class for storing nouns
 
  - `word` `String`:
  	- In the context of a `Noun`, `word` means just the noun. So if `original_string` is `the dog`, then `word` is `dog`.
 
-`Verb` (`Word`):** Class for verbs
+`Verb` (`Word`): Class for verbs
 
  - `word` `String`:
  	 - In the context of a `Verb`, `word` means the verb in present tense, with no extraneous words.
- - `tense` `Tense`
+ - `tense` `Tense`:
  	 - If the word had any tense associated with it, store it here.
  	 
-`Tense`:** 
+`Tense`: 
 	
- - `simple` past, present, or future
+ - `simple` [past, present, or future]
  - `progressive` `Boolean`
  - `perfect` `Boolean`
 
