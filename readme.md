@@ -70,36 +70,6 @@ Steps to translate the above link grammar into objects:
  5. If the verb's tense is progressive, set the subject to the `doee`, otherwise set it the the `doer`. 
 
 
-
-##Example cases:
-###Present:
-	Simple:			The boy throws the ball.
-	Progressive:	The ball is thrown by the boy.
-
-###Past:	
-	Simple:			The boy threw the ball.
-	Progressive:	The ball was thrown by the boy.
-
-###Future:	
-	Simple:			The boy will throw the ball.
-	Progressive:	The ball will be thrown by the boy.
-
-Article for easy refresh on verb tenses [here](http://leo.stcloudstate.edu/grammar/tenses.html).
-A pattern forms, progressive, the doer and object flip. The verb is more complicated, `throw`, present tense, is simple, and what everything should be refined down too. Present Progressing (`thrown`) is prefixed by an `is` and is constant between the the other tenses that are progressive. This allows us to determine tense based solely on the prefix. (`is`, `was`, `will be`).
-
-
-About to sleep idea:
-
-	The ball was thrown when the bat hit it.
-	
-Translates to:
-	
-	Whe the bat hit it, the ball was thrown.
-	
-	
-The word `it` is a challenge. 
-
-
 ##Gerunds
 Gerunds can be  converted to standard format as such:
 
