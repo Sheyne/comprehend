@@ -9,35 +9,66 @@ and in the past progressive:
 	
 	The ball was thrown by the boy.
 	
-We see there are two sentences are equivalent, except that the subject and object switch.
+We see there are two sentences are equivalent, except that the subject and object switch. (The the doer becomes the object, and the doee becomes the subject.
 
-The system will automatically convert sentences to match the former. This makes an SVO set with "the boy" as the subject, "threw" as the verb, and "the ball" as the object.
 
-Given the sentence:
+##Object Structure.
+A sentence structure has several components:
 
-	The ball was thrown.
+**`Sentence`:** An object for storing a sentence. 
+ 
+ - **`doer`** `Noun`
+ 	- What preformed an action.
+ - **`doee`** `Noun`
+ 	- What had an action performed on it.
+ - **`verb`** `Verb`
+ 	- What the action was.
+ - **`prepositions`** `Preposition` array
+ 	- Any conditions, or additional information. 
 
-This reformatting would result in a sentence with no subject. This is acceptable.
+**`Word`:** Base class for all words
 
-A sentence also has a tense associated with it. 
+ - **`word`** `String`:
+ 	 - A `String` of the `Word`, and its most basic form.
+ - **`original_string`** `String`:
+ 	 - Exactly what the parser received. (Often exactly the same as `word`).
+ - **`linked_words`** `Word` array:
+ 	 - Any links this word had.
 
-	The boy threw the ball.
+**`Noun` (`Word`):** Class for storing nouns
+
+ - **`word`** `String`:
+ 	- In the context of a `Noun`, `word` means just the noun. So if `original_string` is `the dog`, then `word` is `dog`.
+
+**`Verb` (`Word`):** Class for verbs
+
+ - **`word`** `String`:
+ 	 - In the context of a `Verb`, `word` means the verb in present tense, with no extraneous words.
+ - **`tense`** `Tense`
+ 	 - If the word had any tense associated with it, store it here.
+ 	 
+**`Tense`:** 
 	
-implies that
+ - **`simple`** past, present, or future
+ - **`progressive`** `Boolean`
+ - **`perfect`** `Boolean`
 
-`The boy throws the ball.` or `The boy is throwing the ball.`
-	
-was true sometime in the past. The only difference is tense.
+##Link Grammar
 
-All these sentences should become something like:
+		+-------------------Xp------------------+
+		+-----Wd----+            +----Js----+   |
+		|      +-Ds-+--Ss--+-MVp-+    +--Ds-+   |
+		|      |    |      |     |    |     |   |
+	LEFT-WALL the dog.n runs.v after the ball.s . 
 
-	Enviroment env=Enviroment.current_enviroment()
-	Sentence s=Sentence(enviroment=env)
-	s.subject=env.noun("the boy")
-	s.verb=env.verb("threw")  #internally becomes the infinitive.
-	s.subject=env.noun("the ball")
-	s.when=time.range(-∞, time.now(), inclusive=False)
-	s.original_tense=null /*here I still need to come up with how to display this.*/
+Steps to translate the above link grammar into objects:
+
+ 1. We start by finding the `S` link.
+ 2. The left is the subject: store it in a variable as a noun.
+ 3. The right is the verb, store it in a variable as the verb. 
+ 4. Make a sentence object and set the verb to it.
+ 5. If the verb's tense is progressive, set the subject to the `doee`, otherwise set it the the `doer`. 
+
 
 
 ##Example cases:
@@ -54,4 +85,26 @@ All these sentences should become something like:
 	Progressive:	The ball will be thrown by the boy.
 
 Article for easy refresh on verb tenses [here](http://leo.stcloudstate.edu/grammar/tenses.html).
-A pattern forms, progressive, the subject and object flip. The verb is more complicated, `throw`, present tense, is simple, and what everything should be refined down too. Present Progressing (`thrown`) is prefixed by an `is` and is constant between the the other tenses that are progressive. This allows us to determine tense based solely on the prefix. (`is`, `was`, `will be`).
+A pattern forms, progressive, the doer and object flip. The verb is more complicated, `throw`, present tense, is simple, and what everything should be refined down too. Present Progressing (`thrown`) is prefixed by an `is` and is constant between the the other tenses that are progressive. This allows us to determine tense based solely on the prefix. (`is`, `was`, `will be`).
+
+
+About to sleep idea:
+
+	The ball was thrown when the bat hit it.
+	
+Translates to:
+	
+	Whe the bat hit it, the ball was thrown.
+	
+	
+The word `it` is a challenge. 
+
+
+##Gerunds
+Gerunds can be  converted to standard format as such:
+
+`The dog is running.`:
+Becomes: `The dog runs.`
+
+`The dog is running after the ball.`:
+Becomes: `The dog runs after the ball.`
