@@ -8,33 +8,36 @@
 
 #ifndef Comprehend_comprehend_h
 #define Comprehend_comprehend_h
-#include <set>
-#include <string.h>
+#include <vector>
 
-class Word {
+#include "ref_count.h"
+using namespace ref_count;
+
+class Word;
+
+class Link: public Object {
+	String *_type;
+	Word *_target;
 public:
-	const char *const name;
-	bool operator == (Word other){
-		return strcmp(other.name, name)==0;
+	Link(String *type, Word *target);
+	Link(const char *type, Word *target);
+	~Link();
+};
+
+class Word: public Object {
+	std::vector <Link*> links;
+	String *_word;
+public:
+	void add_link(Link *link){
+		links.push_back(link);
 	}
-	Word(const char *name);
-};
-
-class Noun: public Word {	
-public:
-	Noun(const char*name):Word(name){}
-};
-class Enviroment {
-	static Enviroment *standard_enviroment_;
-public:
-	std::set <Noun>nouns;
-	static Enviroment *standard_enviroment(){
-		if (!standard_enviroment_) {
-			standard_enviroment_=new Enviroment;
-		}
-		return standard_enviroment_;
+	
+	String * base_word(){
+		return _word;
 	}
+	Word(String *word);
+	Word(const char *word);
+	~Word();
 };
-
 
 #endif

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
+		360426E21426CAF00049FDF1 /* ref_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426E0142686600049FDF1 /* ref_count.cpp */; };
+		360426E31426CAF90049FDF1 /* ref_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426E0142686600049FDF1 /* ref_count.cpp */; };
+		360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
 		365B0CCC140ACF8600FE59B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365B0CCB140ACF8600FE59B5 /* Cocoa.framework */; };
 		365B0CD6140ACF8600FE59B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */; };
 		365B0CD8140ACF8600FE59B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CD7140ACF8600FE59B5 /* main.m */; };
@@ -16,8 +20,6 @@
 		365B0CF2140ACFA100FE59B5 /* test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 365B0CF1140ACFA100FE59B5 /* test.1 */; };
 		368A4601140B307200A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
 		368A4602140B307600A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
-		368A460A140B35B400A5CBEE /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 368A4609140B35B400A5CBEE /* comprehend.cpp */; };
-		368A460B140B380A00A5CBEE /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 368A4609140B35B400A5CBEE /* comprehend.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +36,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		360426DD1426815F0049FDF1 /* comprehend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comprehend.cpp; path = api/comprehend.cpp; sourceTree = "<group>"; };
+		360426DF142686360049FDF1 /* ref_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ref_count.h; path = api/ref_count.h; sourceTree = "<group>"; };
+		360426E0142686600049FDF1 /* ref_count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ref_count.cpp; path = api/ref_count.cpp; sourceTree = "<group>"; };
 		365B0CC7140ACF8600FE59B5 /* Comprehend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comprehend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		365B0CCB140ACF8600FE59B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		365B0CCE140ACF8600FE59B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -50,7 +55,6 @@
 		365B0CF1140ACFA100FE59B5 /* test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test.1; sourceTree = "<group>"; };
 		368A45FF140B306500A5CBEE /* liblink-grammar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "liblink-grammar.dylib"; path = "usr/local/lib/liblink-grammar.dylib"; sourceTree = SDKROOT; };
 		368A4606140B34D400A5CBEE /* comprehend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = comprehend.h; path = api/comprehend.h; sourceTree = "<group>"; };
-		368A4609140B35B400A5CBEE /* comprehend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comprehend.cpp; path = api/comprehend.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +151,10 @@
 		368A45F9140B2FDF00A5CBEE /* api */ = {
 			isa = PBXGroup;
 			children = (
+				360426DF142686360049FDF1 /* ref_count.h */,
+				360426E0142686600049FDF1 /* ref_count.cpp */,
 				368A4606140B34D400A5CBEE /* comprehend.h */,
-				368A4609140B35B400A5CBEE /* comprehend.cpp */,
+				360426DD1426815F0049FDF1 /* comprehend.cpp */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -234,8 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				360426E21426CAF00049FDF1 /* ref_count.cpp in Sources */,
 				365B0CD8140ACF8600FE59B5 /* main.m in Sources */,
-				368A460A140B35B400A5CBEE /* comprehend.cpp in Sources */,
+				360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */,
+				360426E31426CAF90049FDF1 /* ref_count.cpp in Sources */,
 				365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */,
-				368A460B140B380A00A5CBEE /* comprehend.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
