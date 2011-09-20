@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
-		360426E21426CAF00049FDF1 /* ref_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426E0142686600049FDF1 /* ref_count.cpp */; };
-		360426E31426CAF90049FDF1 /* ref_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426E0142686600049FDF1 /* ref_count.cpp */; };
 		360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
 		365B0CCC140ACF8600FE59B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365B0CCB140ACF8600FE59B5 /* Cocoa.framework */; };
 		365B0CD6140ACF8600FE59B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */; };
@@ -37,8 +35,6 @@
 
 /* Begin PBXFileReference section */
 		360426DD1426815F0049FDF1 /* comprehend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comprehend.cpp; path = api/comprehend.cpp; sourceTree = "<group>"; };
-		360426DF142686360049FDF1 /* ref_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ref_count.h; path = api/ref_count.h; sourceTree = "<group>"; };
-		360426E0142686600049FDF1 /* ref_count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ref_count.cpp; path = api/ref_count.cpp; sourceTree = "<group>"; };
 		365B0CC7140ACF8600FE59B5 /* Comprehend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comprehend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		365B0CCB140ACF8600FE59B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		365B0CCE140ACF8600FE59B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -151,8 +147,6 @@
 		368A45F9140B2FDF00A5CBEE /* api */ = {
 			isa = PBXGroup;
 			children = (
-				360426DF142686360049FDF1 /* ref_count.h */,
-				360426E0142686600049FDF1 /* ref_count.cpp */,
 				368A4606140B34D400A5CBEE /* comprehend.h */,
 				360426DD1426815F0049FDF1 /* comprehend.cpp */,
 			);
@@ -240,7 +234,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				360426E21426CAF00049FDF1 /* ref_count.cpp in Sources */,
 				365B0CD8140ACF8600FE59B5 /* main.m in Sources */,
 				360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */,
 			);
@@ -251,7 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */,
-				360426E31426CAF90049FDF1 /* ref_count.cpp in Sources */,
 				365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
