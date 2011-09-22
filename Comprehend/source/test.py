@@ -15,6 +15,6 @@ for linkage in sent.linkages:
 			verb=link.right
 	for link,direction in subject.links:
 		if not direction and link.type.mayjor=="D":
-			subject=comprehend.Phrase((link.left, link.right), link.right)
+			subject=comprehend.Phrase((link.right, link.left,), link.right)
 	print subject, verb
 	break
