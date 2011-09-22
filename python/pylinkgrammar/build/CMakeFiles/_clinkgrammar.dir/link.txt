@@ -1,1 +1,0 @@
-/usr/bin/gcc    -bundle -Wl,-headerpad_max_install_names   -o _clinkgrammar.so CMakeFiles/_clinkgrammar.dir/link_grammarPYTHON_wrap.c.o /usr/lib/libpython2.7.dylib /usr/local/lib/liblink-grammar.dylib 

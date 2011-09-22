@@ -9,8 +9,6 @@ class Phrase(object):
 		#fill in
 		return (0,1)
 	def __str__(self):
-		return " ".join(map(lambda idx: str(self.words[idx]), self.order))
+		return "<%s>" % " ".join(map(lambda idx: str(self.words[idx]), self.order))
 	def __repr__(self):
 		return "Phrase(words=%s, main=%s)" % (repr(self.words), repr(self.main))
-dict=linkgrammar.Dictionary("en")
-sent = dict.Sentence("The dog has brown fur.")

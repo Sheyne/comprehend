@@ -1,9 +1,8 @@
 import linkgrammar
 import comprehend
-##############################################
-## NEED TO ADD CODE TO STORE WORD POSITIONS ##
-##############################################
 
+dict=linkgrammar.Dictionary("en")
+sent = dict.Sentence("The dog has brown fur.")
 
 for linkage in sent.linkages:
 	print linkage
