@@ -6,287 +6,94 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
-		360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360426DD1426815F0049FDF1 /* comprehend.cpp */; };
-		365B0CCC140ACF8600FE59B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365B0CCB140ACF8600FE59B5 /* Cocoa.framework */; };
-		365B0CD6140ACF8600FE59B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */; };
-		365B0CD8140ACF8600FE59B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CD7140ACF8600FE59B5 /* main.m */; };
-		365B0CDC140ACF8600FE59B5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CDA140ACF8600FE59B5 /* Credits.rtf */; };
-		365B0CE2140ACF8700FE59B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365B0CE0140ACF8700FE59B5 /* MainMenu.xib */; };
-		365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365B0CEF140ACFA100FE59B5 /* main.cpp */; };
-		365B0CF2140ACFA100FE59B5 /* test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 365B0CF1140ACFA100FE59B5 /* test.1 */; };
-		368A4601140B307200A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
-		368A4602140B307600A5CBEE /* liblink-grammar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368A45FF140B306500A5CBEE /* liblink-grammar.dylib */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		365B0CEA140ACFA100FE59B5 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				365B0CF2140ACFA100FE59B5 /* test.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		360426DD1426815F0049FDF1 /* comprehend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comprehend.cpp; path = api/comprehend.cpp; sourceTree = "<group>"; };
-		365B0CC7140ACF8600FE59B5 /* Comprehend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comprehend.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		365B0CCB140ACF8600FE59B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		365B0CCE140ACF8600FE59B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		365B0CCF140ACF8600FE59B5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		365B0CD0140ACF8600FE59B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		365B0CD3140ACF8600FE59B5 /* Comprehend-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Comprehend-Info.plist"; sourceTree = "<group>"; };
-		365B0CD5140ACF8600FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		365B0CD7140ACF8600FE59B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		365B0CD9140ACF8600FE59B5 /* Comprehend-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Comprehend-Prefix.pch"; sourceTree = "<group>"; };
-		365B0CDB140ACF8600FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		365B0CE1140ACF8700FE59B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		365B0CEC140ACFA100FE59B5 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
-		365B0CEF140ACFA100FE59B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		365B0CF1140ACFA100FE59B5 /* test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test.1; sourceTree = "<group>"; };
-		368A45FF140B306500A5CBEE /* liblink-grammar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "liblink-grammar.dylib"; path = "usr/local/lib/liblink-grammar.dylib"; sourceTree = SDKROOT; };
-		368A4606140B34D400A5CBEE /* comprehend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = comprehend.h; path = api/comprehend.h; sourceTree = "<group>"; };
+		3680F03E142AFEC900F81879 /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
+		3680F03F142AFFF600F81879 /* comprehend.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = comprehend.py; path = ../python/comprehend.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		365B0CC4140ACF8600FE59B5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				365B0CCC140ACF8600FE59B5 /* Cocoa.framework in Frameworks */,
-				368A4602140B307600A5CBEE /* liblink-grammar.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		365B0CE9140ACFA100FE59B5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				368A4601140B307200A5CBEE /* liblink-grammar.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
-		365B0CBC140ACF8600FE59B5 = {
+		3680F021142AFCDB00F81879 = {
 			isa = PBXGroup;
 			children = (
-				368A45F9140B2FDF00A5CBEE /* api */,
-				365B0CD1140ACF8600FE59B5 /* Comprehend */,
-				365B0CEE140ACFA100FE59B5 /* test */,
-				365B0CCA140ACF8600FE59B5 /* Frameworks */,
-				365B0CC8140ACF8600FE59B5 /* Products */,
+				3680F03D142AFEAC00F81879 /* source */,
 			);
 			sourceTree = "<group>";
 		};
-		365B0CC8140ACF8600FE59B5 /* Products */ = {
+		3680F03D142AFEAC00F81879 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				365B0CC7140ACF8600FE59B5 /* Comprehend.app */,
-				365B0CEC140ACFA100FE59B5 /* test */,
+				3680F03F142AFFF600F81879 /* comprehend.py */,
+				3680F03E142AFEC900F81879 /* main.py */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		365B0CCA140ACF8600FE59B5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				368A45FF140B306500A5CBEE /* liblink-grammar.dylib */,
-				365B0CCB140ACF8600FE59B5 /* Cocoa.framework */,
-				365B0CCD140ACF8600FE59B5 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		365B0CCD140ACF8600FE59B5 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				365B0CCE140ACF8600FE59B5 /* AppKit.framework */,
-				365B0CCF140ACF8600FE59B5 /* CoreData.framework */,
-				365B0CD0140ACF8600FE59B5 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		365B0CD1140ACF8600FE59B5 /* Comprehend */ = {
-			isa = PBXGroup;
-			children = (
-				365B0CE0140ACF8700FE59B5 /* MainMenu.xib */,
-				365B0CD2140ACF8600FE59B5 /* Supporting Files */,
-			);
-			path = Comprehend;
-			sourceTree = "<group>";
-		};
-		365B0CD2140ACF8600FE59B5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				365B0CD3140ACF8600FE59B5 /* Comprehend-Info.plist */,
-				365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */,
-				365B0CD7140ACF8600FE59B5 /* main.m */,
-				365B0CD9140ACF8600FE59B5 /* Comprehend-Prefix.pch */,
-				365B0CDA140ACF8600FE59B5 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		365B0CEE140ACFA100FE59B5 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				365B0CEF140ACFA100FE59B5 /* main.cpp */,
-				365B0CF1140ACFA100FE59B5 /* test.1 */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		368A45F9140B2FDF00A5CBEE /* api */ = {
-			isa = PBXGroup;
-			children = (
-				368A4606140B34D400A5CBEE /* comprehend.h */,
-				360426DD1426815F0049FDF1 /* comprehend.cpp */,
-			);
-			name = api;
+			name = source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXNativeTarget section */
-		365B0CC6140ACF8600FE59B5 /* Comprehend */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 365B0CE5140ACF8700FE59B5 /* Build configuration list for PBXNativeTarget "Comprehend" */;
+/* Begin PBXLegacyTarget section */
+		3680F039142AFD4B00F81879 /* test */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 3680F03A142AFD4B00F81879 /* Build configuration list for PBXLegacyTarget "test" */;
 			buildPhases = (
-				365B0CC3140ACF8600FE59B5 /* Sources */,
-				365B0CC4140ACF8600FE59B5 /* Frameworks */,
-				365B0CC5140ACF8600FE59B5 /* Resources */,
 			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Comprehend;
-			productName = Comprehend;
-			productReference = 365B0CC7140ACF8600FE59B5 /* Comprehend.app */;
-			productType = "com.apple.product-type.application";
-		};
-		365B0CEB140ACFA100FE59B5 /* test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 365B0CF3140ACFA100FE59B5 /* Build configuration list for PBXNativeTarget "test" */;
-			buildPhases = (
-				365B0CE8140ACFA100FE59B5 /* Sources */,
-				365B0CE9140ACFA100FE59B5 /* Frameworks */,
-				365B0CEA140ACFA100FE59B5 /* CopyFiles */,
-			);
-			buildRules = (
-			);
+			buildToolPath = /usr/local/bin/python;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = test;
+			passBuildSettingsInEnvironment = 1;
 			productName = test;
-			productReference = 365B0CEC140ACFA100FE59B5 /* test */;
-			productType = "com.apple.product-type.tool";
 		};
-/* End PBXNativeTarget section */
+/* End PBXLegacyTarget section */
 
 /* Begin PBXProject section */
-		365B0CBE140ACF8600FE59B5 /* Project object */ = {
+		3680F023142AFCDB00F81879 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Sheyne Anderson";
 			};
-			buildConfigurationList = 365B0CC1140ACF8600FE59B5 /* Build configuration list for PBXProject "Comprehend" */;
+			buildConfigurationList = 3680F026142AFCDB00F81879 /* Build configuration list for PBXProject "comprehend" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 365B0CBC140ACF8600FE59B5;
-			productRefGroup = 365B0CC8140ACF8600FE59B5 /* Products */;
+			mainGroup = 3680F021142AFCDB00F81879;
+			productRefGroup = 3680F021142AFCDB00F81879;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				365B0CC6140ACF8600FE59B5 /* Comprehend */,
-				365B0CEB140ACFA100FE59B5 /* test */,
+				3680F039142AFD4B00F81879 /* test */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		365B0CC5140ACF8600FE59B5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				365B0CD6140ACF8600FE59B5 /* InfoPlist.strings in Resources */,
-				365B0CDC140ACF8600FE59B5 /* Credits.rtf in Resources */,
-				365B0CE2140ACF8700FE59B5 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		365B0CC3140ACF8600FE59B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				365B0CD8140ACF8600FE59B5 /* main.m in Sources */,
-				360426DE1426815F0049FDF1 /* comprehend.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		365B0CE8140ACFA100FE59B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				360426E41426CAFC0049FDF1 /* comprehend.cpp in Sources */,
-				365B0CF0140ACFA100FE59B5 /* main.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		365B0CD4140ACF8600FE59B5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				365B0CD5140ACF8600FE59B5 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		365B0CDA140ACF8600FE59B5 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				365B0CDB140ACF8600FE59B5 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		365B0CE0140ACF8700FE59B5 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				365B0CE1140ACF8700FE59B5 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		365B0CE3140ACF8700FE59B5 /* Debug */ = {
+		3680F028142AFCDC00F81879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		3680F029142AFCDC00F81879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		3680F03B142AFD4B00F81879 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -300,11 +107,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		365B0CE4140ACF8700FE59B5 /* Release */ = {
+		3680F03C142AFD4B00F81879 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -319,81 +129,34 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		365B0CE6140ACF8700FE59B5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Comprehend/Comprehend-Prefix.pch";
-				INFOPLIST_FILE = "Comprehend/Comprehend-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		365B0CE7140ACF8700FE59B5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Comprehend/Comprehend-Prefix.pch";
-				INFOPLIST_FILE = "Comprehend/Comprehend-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		365B0CF4140ACFA100FE59B5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				HEADER_SEARCH_PATHS = "/usr/local/include/**";
-				LIBRARY_SEARCH_PATHS = "/usr/local/lib/**";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		365B0CF5140ACFA100FE59B5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				HEADER_SEARCH_PATHS = "/usr/local/include/**";
-				LIBRARY_SEARCH_PATHS = "/usr/local/lib/**";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		365B0CC1140ACF8600FE59B5 /* Build configuration list for PBXProject "Comprehend" */ = {
+		3680F026142AFCDB00F81879 /* Build configuration list for PBXProject "comprehend" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				365B0CE3140ACF8700FE59B5 /* Debug */,
-				365B0CE4140ACF8700FE59B5 /* Release */,
+				3680F028142AFCDC00F81879 /* Debug */,
+				3680F029142AFCDC00F81879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		365B0CE5140ACF8700FE59B5 /* Build configuration list for PBXNativeTarget "Comprehend" */ = {
+		3680F03A142AFD4B00F81879 /* Build configuration list for PBXLegacyTarget "test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				365B0CE6140ACF8700FE59B5 /* Debug */,
-				365B0CE7140ACF8700FE59B5 /* Release */,
+				3680F03B142AFD4B00F81879 /* Debug */,
+				3680F03C142AFD4B00F81879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		365B0CF3140ACFA100FE59B5 /* Build configuration list for PBXNativeTarget "test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				365B0CF4140ACFA100FE59B5 /* Debug */,
-				365B0CF5140ACFA100FE59B5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 365B0CBE140ACF8600FE59B5 /* Project object */;
+	rootObject = 3680F023142AFCDB00F81879 /* Project object */;
 }

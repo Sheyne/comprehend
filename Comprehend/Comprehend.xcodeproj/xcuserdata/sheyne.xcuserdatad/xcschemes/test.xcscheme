@@ -13,10 +13,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "365B0CEB140ACFA100FE59B5"
+               BlueprintIdentifier = "3680F039142AFD4B00F81879"
                BuildableName = "test"
                BlueprintName = "test"
-               ReferencedContainer = "container:Comprehend.xcodeproj">
+               ReferencedContainer = "container:comprehend.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,20 +30,29 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug">
-      <BuildableProductRunnable>
+      <PathRunnable
+         FilePath = "/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "365B0CEB140ACFA100FE59B5"
+            BlueprintIdentifier = "3680F039142AFD4B00F81879"
             BuildableName = "test"
             BlueprintName = "test"
-            ReferencedContainer = "container:Comprehend.xcodeproj">
+            ReferencedContainer = "container:comprehend.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "$(SOURCE_ROOT)/main.py"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -55,10 +64,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "365B0CEB140ACFA100FE59B5"
+            BlueprintIdentifier = "3680F039142AFD4B00F81879"
             BuildableName = "test"
             BlueprintName = "test"
-            ReferencedContainer = "container:Comprehend.xcodeproj">
+            ReferencedContainer = "container:comprehend.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
