@@ -1,5 +1,3 @@
-Design criteria can be found [here](https://github.com/Sheyne/comprehend/wiki "On the wiki").
-
 ##The basics:
 Given the sentence, in past tense:
 
@@ -78,3 +76,29 @@ Becomes: `The dog runs.`
 
 `The dog is running after the ball.`:
 Becomes: `The dog runs after the ball.`
+
+
+
+
+
+
+#Thoery:
+The thoery is to take a sentence in the format of: `On staturday, the red dog chases the blue cat.`, and build two objects:
+
+The main classes are sentences nouns, and verbs. 
+
+Sentences store two nouns, a verb, and a list of prepositional phrases. One noun is the doer, and the other is the doee. In an active sentence, the doer will be the subject and if the is a direct object, it will be the doee. In a passive sentence, the doee is the subject and any direct is the doer. 
+
+Whether the sentence is active or passive is determined by the verb. There are three tenses (present, future, past) and each of these can be marked as progressive and/or perfect. If the verb is progressive, the sentence is passive elsewise the sentence is active. The verb will be represented by the simple present form of the verb, and tense will be stored.
+
+Back to our example sentence:
+
+            +------------------------------Xp-----------------------------+
+            +---------------Wd--------------+                             |
+            |      +-----------CO-----------+       +--------Os-------+   |
+            |      +----Xc----+  +----Ds----+       |     +-----Ds----+   |
+       	    |      +--ON-+    |  |    +--A--+---Ss--+     |     +--A--+   |
+    	    |      |     |    |  |    |     |       |     |     |     |   |
+    	LEFT-WALL on Saturday , the red.a dog.n chases.v the blue.a cat.n . 
+
+`dog.n` is linked to the left to four things, the wall, the prep phrase, `the` and `red.a`. What is important is to pick out the words linked to `dog.n` that directly modify or describe it, (`the`, `red.a`). Curent plan mainly consists of keeping a list of link types that describe the noun. 
