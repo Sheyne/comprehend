@@ -83,7 +83,7 @@ Becomes: `The dog runs after the ball.`
 
 
 #Thoery:
-The thoery is to take a sentence in the format of: `On staturday, the red dog chases the blue cat.`, and build two objects:
+The thoery is to take a sentence in the format of: `On staturday, the red dog chases the blue cat.`, and build two objects, `the red dog` and `the blue cat`. 
 
 The main classes are sentences nouns, and verbs. 
 
