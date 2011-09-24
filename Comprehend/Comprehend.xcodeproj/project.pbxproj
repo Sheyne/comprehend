@@ -10,12 +10,14 @@
 		3666A569142B9A9E00604EA6 /* comprehend.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = comprehend.py; path = source/comprehend.py; sourceTree = "<group>"; };
 		3666A56A142B9A9E00604EA6 /* test.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = test.py; path = source/test.py; sourceTree = "<group>"; };
 		36969746142BA15900267D7D /* util.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = util.py; path = source/util.py; sourceTree = "<group>"; };
+		36C24A4C142D7C2A005B498A /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		3680F021142AFCDB00F81879 = {
 			isa = PBXGroup;
 			children = (
+				36C24A4C142D7C2A005B498A /* readme.md */,
 				3680F03D142AFEAC00F81879 /* source */,
 			);
 			sourceTree = "<group>";
