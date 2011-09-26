@@ -102,3 +102,8 @@ Back to our example sentence:
     	LEFT-WALL on Saturday , the red.a dog.n chases.v the blue.a cat.n . 
 
 `dog.n` is linked to the left to four things, the wall, the prep phrase, `the` and `red.a`. What is important is to pick out the words linked to `dog.n` that directly modify or describe it, (`the`, `red.a`). Curent plan mainly consists of keeping a list of link types that describe the noun. 
+
+#TODO:
+
+* LOOKUP: antecedent
+
