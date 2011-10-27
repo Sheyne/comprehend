@@ -28,6 +28,8 @@ The brackets are just a shorthand.
 
 A for some sentences, the target is undefined. For example: "The dog chases", translates to: `[dog] -- chases -> #`. We are unsure of what the dog is chasing. `#` represents an unknown, unwanted quantity.
 
-Now suppose that we are given, "The dog chases the cat. ", we build the structure: `[dog] -- chases -> [cat]`. 
+## Queries
 
-The benefit to storing data in such a structure is that we can easily query information from the structure. We can query the structure with questions. For example "What does the dog chase?". This becomes `[dog] -- chases -> ?`. This introduces the `?` token, which represents an unknown object that is being searched for. If the query was run on the above, `? = [cat]`.
+Suppose the initial knowledge is: "The dog chases the cat. ", we build the structure: `[dog] -- chases -> [cat]`. 
+
+The benefit to storing data in this structure is that we can easily query information from the structure. We can query the structure with questions. For example "What does the dog chase?". This becomes `[dog] -- chases -> ?`. This introduces the `?` token, which represents an unknown object that is being searched for. If the query was run on the above, `? = [cat]`.
