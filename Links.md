@@ -1,5 +1,7 @@
 # Links
 
+## Introduction
+
 The fundamental element of the data structure is the link. A link consists of a source node pointing a label node at a target node. 
 
 Link structure: `{source} -- {label} -> {target}`
