@@ -27,5 +27,5 @@ This is a basic
 	
 
 ### Enviroment
-	Sam --is a--> [noun instance](dog)
+	Sam --is--> [noun instance](dog) ## discuss the verbage for this link...
 	Sam --chases--> + --the--> cat
