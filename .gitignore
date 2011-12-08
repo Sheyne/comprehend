@@ -3,3 +3,4 @@ Comprehend/Comprehend.xcodeproj/project.xcworkspace/xcuserdata/sheyne.xcuserdata
 Comprehend/Comprehend.xcodeproj/xcuserdata/sheyne.xcuserdatad/xcdebugger/
 *.pyc
 main.xcscheme
+.DS_Store
