@@ -2,7 +2,7 @@
 
 The dog chases the cat
 
-#### General Rules:
+### General Rules:
 
 	[noun] the noun
 	[verb] the verb
