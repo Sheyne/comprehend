@@ -36,10 +36,14 @@ When processing a sentence, the definition of each word is looked up from the di
 ### Implications
 
 #### is
-given `a is b`
 
-`b [c] [d]` -> 
-`a [c] [d]`
+	implies
+		is [a] [b]
+		means
+			[b] [c] [d]
+			[a] [c] [d]
+
+--> Dec8.5
 
 ### Example sentence being processed
 
@@ -67,8 +71,8 @@ scan order, left, right, and boxing
 #### Links should form boxes:
 all adjectives between a linked `the` and `dog` should be captured.
 
-
-
+## Dec8.5:
+Figure out this structure more
 
 
 
