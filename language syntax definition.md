@@ -54,36 +54,5 @@ sentence: "The dog chases the cat"
 	chases [env_var_1] [env_var_2]
 
 
-# Needs to be looked at:
-* dec8.4 (partially solved, still need boxing)
-* dec8.5
-* dec8.6
-
-
-# Thoughts log
-## Dec8.3:
-**On infix notation**
-
-this constitutes a switch to prefix notation for links
-
-## Dec8.4:
-**on scan words, and loading.**
-
-scan order, left, right, and boxing
-
-#### Links should have direction:
-`Dog` should not use a `the` that comes after it in a sentence. At least in most cases
-
-#### Links should form boxes:
-all adjectives between a linked `the` and `dog` should be captured.
-
-## Dec8.5:
-Figure out this structure more
-
-## Dec8.6:
-thought log get moved to "issues"
-
-
-
 
 
