@@ -54,6 +54,11 @@ sentence: "The dog chases the cat"
 	chases [env_var_1] [env_var_2]
 
 
+# Needs to be looked at:
+* dec8.4 (partially solved, still need boxing)
+* dec8.5
+
+
 # Thoughts log
 ## Dec8.3:
 **On infix notation**
