@@ -57,6 +57,7 @@ sentence: "The dog chases the cat"
 # Needs to be looked at:
 * dec8.4 (partially solved, still need boxing)
 * dec8.5
+* dec8.6
 
 
 # Thoughts log
@@ -79,8 +80,8 @@ all adjectives between a linked `the` and `dog` should be captured.
 ## Dec8.5:
 Figure out this structure more
 
-
-
+## Dec8.6:
+thought log get moved to "issues"
 
 
 
