@@ -58,10 +58,13 @@ this constitutes a switch to prefix notation for links
 ## Dec8.4:
 **on scan words, and loading.**
 
-switch from a 
+scan order, left, right, and boxing
 
+#### Links should have direction:
+`Dog` should not use a `the` that comes after it in a sentence. At least in most cases
 
-
+#### Links should form boxes:
+all adjectives between a linked `the` and `dog` should be captured.
 
 
 
