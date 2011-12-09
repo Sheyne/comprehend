@@ -1,22 +1,17 @@
 # Dictionary Rules
 
-`a b c`: `a` is `b` linked to `c`
+`a`: **word**--constant and global. (Technically a **global word**)
 
-`[variable]`: a variable--can be used anywhere that a word could
+`[a]`: **scoped word**--can be used anywhere that a word could, but they have the benefit of scoping (`[b]` in one scope is not equal `[b]` in another scope).
 
-`#`: generate a point that can be linked to with no name
+`<a>`: **scan word**--scan the sentence for the word and plug in. Can be scoped or global. 
 
-`?`: query a word, and use it as the subject of the link
+`#`: **anonymous word**--a each `#` is a unique word with no tag name.
 
-`[a]?`: same as `?`, but word must match `[a]`
-
-`?[a]`: take a query and place it in variable `[a]`
-
-### to define a  variable to a query:
-`[x]` is `[]?`
+`a b c`:linkage--`a` is linked to `c` with a `b` type link.
 
 ### usage: Implications
-any time a link is made, it's implications are followed and generated
+Any time a link is made, it's implied linkages are followed and generated.
 
 ### usage: Definitions
 When processing a sentence, the definition of each word is looked up from the dictionary.
@@ -25,33 +20,56 @@ When processing a sentence, the definition of each word is looked up from the di
 
 # Example
 
-The dog chases the cat
-
 ### General Rules:
 
+	## General broad definitions
 	[noun] the noun
 	[verb] the verb
+	
+	## Specific Ideas
 	dog is [noun]
 	cat is [noun]
+	
+	## Processing
+	# <the> <[noun]>
 
 ### Implications
 
 #### is
 given `a is b`
 
-`b ?[c] ?[d]` -> 
+`b [c] [d]` -> 
 `a [c] [d]`
 
-### Definitions
+### Example sentence being processed
 
-#### the:
-`# the [noun]?`
-
-#### The beginning of an environment:
+sentence: "The dog chases the cat"
 
 	[env_var_1] the dog
 	[env_var_2] the cat
 	[env_var_1] chases [env_var_2]
+
+
+## Dec8.3:
+**On infix notation**
+
+this constitutes a switch to prefix notation for links
+
+## Dec8.4:
+**on scan words, and loading.**
+
+switch from a 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
