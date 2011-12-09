@@ -4,7 +4,7 @@
 
 `[a]`: **scoped word**--can be used anywhere that a word could, but they have the benefit of scoping (`[b]` in one scope is not equal `[b]` in another scope).
 
-`<a>`: **scan word**--scan the sentence for the word and plug in. Can be scoped or global. 
+`a<x>`: **word scan order**--scan the sentence for the word and plug in. The words need to be found in the sentence in the correct scan order. 
 
 `#`: **anonymous word**--a each `#` is a unique word with no tag name.
 
@@ -31,7 +31,7 @@ When processing a sentence, the definition of each word is looked up from the di
 	is cat [noun]
 	
 	## Processing
-	<the> # <[noun]>
+	the<1> # [noun]<2>
 
 ### Implications
 
