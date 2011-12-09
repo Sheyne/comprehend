@@ -17,5 +17,8 @@ we can answer the question "What chases the cat", by matching the following:
 	?[match] chases [a]
 
 
-##Top of question: Dec 8.1:
+## Topic of interest: Dec 8.1:
 Should we eliminate queries? I think yes.
+
+## Topic of interest: Dec 8.2:
+How do we deal with the ambiguities that writing to a arrayed variable would cause?
