@@ -8,7 +8,7 @@
 
 `#`: **anonymous word**--a each `#` is a unique word with no tag name.
 
-`a b c`:linkage--`a` is linked to `c` with a `b` type link.
+`a b c`:linkage--`b` is linked to `c` with a `a` type link.
 
 ### usage: Implications
 Any time a link is made, it's implied linkages are followed and generated.
@@ -23,15 +23,15 @@ When processing a sentence, the definition of each word is looked up from the di
 ### General Rules:
 
 	## General broad definitions
-	[noun] the noun
-	[verb] the verb
+	the [noun] noun
+	the [verb] verb
 	
 	## Specific Ideas
-	dog is [noun]
-	cat is [noun]
+	is dog [noun]
+	is cat [noun]
 	
 	## Processing
-	# <the> <[noun]>
+	<the> # <[noun]>
 
 ### Implications
 
@@ -45,11 +45,12 @@ given `a is b`
 
 sentence: "The dog chases the cat"
 
-	[env_var_1] the dog
-	[env_var_2] the cat
-	[env_var_1] chases [env_var_2]
+	the [env_var_1] dog
+	the [env_var_2] cat
+	chases [env_var_1] [env_var_2]
 
 
+# Thoughts log
 ## Dec8.3:
 **On infix notation**
 
