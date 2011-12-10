@@ -54,5 +54,26 @@ sentence: "The dog chases the cat"
 	chases [env_var_1] [env_var_2]
 
 
+### Example of boxing
 
+The red dog chases the cat around the block. -->
 
+                      +----------------+----+
+	  +---------------+----+           |    |
+	  +--+-------+    |    |           |    |
+	  |  |   +---|    |    +--+---+    |    +--+----+
+	  |  |   |   |    |    |  |   |    |    |  |    |
+      # the red dog chases # the cat around # the block
+	  +--+---+---+----+----+--+---+----+----+--+----+
+
+Any word that is in a box, must link either to another word in the box, or one of the walls. 
+
+The expected tree for the block structure above is:
+
+	the [a] dog
+	the [b] cat
+	the [c] block
+	is [a] red 
+	is chases [d]
+	[d] [a] [b]
+	around [d] [c]
