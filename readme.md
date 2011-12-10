@@ -1,109 +1,79 @@
-##The basics:
-Given the sentence, in past tense:
+# Dictionary Rules
 
-	The boy threw the ball.
+`a`: **word**--constant and global. (Technically a **global word**)
 
-and in the past progressive:
+`[a]`: **scoped word**--can be used anywhere that a word could, but they have the benefit of scoping (`[b]` in one scope is not equal `[b]` in another scope).
+
+`a<x>`: **word scan order**--scan the sentence for the word and plug in. The words need to be found in the sentence in the correct scan order. 
+
+`#`: **anonymous word**--a each `#` is a unique word with no tag name.
+
+`a b c`:linkage--`a` is linked to `c` with a `b` type link.
+
+### usage: Implications
+Any time a link is made, it's implied linkages are followed and generated.
+
+### usage: Definitions
+When processing a sentence, the definition of each word is looked up from the dictionary.
+
+---------------
+
+# Example
+
+### General Rules:
+
+	## General broad definitions
+	[noun] the noun
+	[verb] the verb
 	
-	The ball was thrown by the boy.
+	## Specific Ideas
+	dog is [noun]
+	cat is [noun]
 	
-We see there are two sentences are equivalent, except that the subject and object switch. (The the doer becomes the object, and the doee becomes the subject.
+	## Processing
+	# the<1> [noun]<2>
+
+### Implications
+
+#### is
+
+	implies
+		is [a] [b]
+		->
+			[b] [c] [d]
+			[a] [c] [d]
+
+--> Dec8.5
+
+### Example sentence being processed
+
+sentence: "The dog chases the cat"
+
+	[env_var_1] the dog
+	[env_var_2] the cat
+	[env_var_1] chases [env_var_2]
 
 
-##Object Structure.
-A sentence structure has several components:
+### Example of boxing
 
-`Sentence`: An object for storing a sentence. 
- 
- - `doer` `Noun`:
- 	- What preformed an action.
- - `doee` `Noun`:
- 	- What had an action performed on it.
- - `verb` `Verb`:
- 	- What the action was.
- - `prepositions` `Preposition` array:
- 	- Any conditions, or additional information. 
+The red dog chases the cat around the block. -->
 
-`Word`: Base class for all words
+                      +----------------+----+
+	  +---------------+----+           |    |
+	  +--+-------+    |    |           |    |
+	  |  |   +---|    |    +--+---+    |    +--+----+
+	  |  |   |   |    |    |  |   |    |    |  |    |
+      # the red dog chases # the cat around # the block
+	  +--+---+---+----+----+--+---+----+----+--+----+
 
- - `word` `String`:
- 	 - A `String` of the `Word`, and its most basic form.
- - `original_string` `String`:
- 	 - Exactly what the parser received. (Often exactly the same as `word`).
- - `linked_words` `Word` array:
- 	 - Any links this word had.
+Any word that is in a box, must link either to another word in the box, or one of the walls. 
 
-`Noun` (`Word`): Class for storing nouns
+The expected tree for the block structure above is:
 
- - `word` `String`:
- 	- In the context of a `Noun`, `word` means just the noun. So if `original_string` is `the dog`, then `word` is `dog`.
-
-`Verb` (`Word`): Class for verbs
-
- - `word` `String`:
- 	 - In the context of a `Verb`, `word` means the verb in present tense, with no extraneous words.
- - `tense` `Tense`:
- 	 - If the word had any tense associated with it, store it here.
- 	 
-`Tense`: 
-	
- - `simple` [past, present, or future]
- - `progressive` `Boolean`
- - `perfect` `Boolean`
-
-##Link Grammar
-
-		+-------------------Xp------------------+
-		+-----Wd----+            +----Js----+   |
-		|      +-Ds-+--Ss--+-MVp-+    +--Ds-+   |
-		|      |    |      |     |    |     |   |
-	LEFT-WALL the dog.n runs.v after the ball.s . 
-
-Steps to translate the above link grammar into objects:
-
- 1. We start by finding the `S` link.
- 2. The left is the subject: store it in a variable as a noun.
- 3. The right is the verb, store it in a variable as the verb. 
- 4. Make a sentence object and set the verb to it.
- 5. If the verb's tense is progressive, set the subject to the `doee`, otherwise set it the the `doer`. 
-
-
-##Gerunds
-Gerunds can be  converted to standard format as such:
-
-`The dog is running.`:
-Becomes: `The dog runs.`
-
-`The dog is running after the ball.`:
-Becomes: `The dog runs after the ball.`
-
-
-
-
-
-
-#Thoery:
-The thoery is to take a sentence in the format of: `On staturday, the red dog chases the blue cat.`, and build two objects, `the red dog` and `the blue cat`. 
-
-The main classes are sentences nouns, and verbs. 
-
-Sentences store two nouns, a verb, and a list of prepositional phrases. One noun is the doer, and the other is the doee. In an active sentence, the doer will be the subject and if the is a direct object, it will be the doee. In a passive sentence, the doee is the subject and any direct is the doer. 
-
-Whether the sentence is active or passive is determined by the verb. There are three tenses (present, future, past) and each of these can be marked as progressive and/or perfect. If the verb is progressive, the sentence is passive elsewise the sentence is active. The verb will be represented by the simple present form of the verb, and tense will be stored.
-
-Back to our example sentence:
-
-            +------------------------------Xp-----------------------------+
-            +---------------Wd--------------+                             |
-            |      +-----------CO-----------+       +--------Os-------+   |
-            |      +----Xc----+  +----Ds----+       |     +-----Ds----+   |
-       	    |      +--ON-+    |  |    +--A--+---Ss--+     |     +--A--+   |
-    	    |      |     |    |  |    |     |       |     |     |     |   |
-    	LEFT-WALL on Saturday , the red.a dog.n chases.v the blue.a cat.n . 
-
-`dog.n` is linked to the left to four things, the wall, the prep phrase, `the` and `red.a`. What is important is to pick out the words linked to `dog.n` that directly modify or describe it, (`the`, `red.a`). Curent plan mainly consists of keeping a list of link types that describe the noun. 
-
-#TODO:
-
-* LOOKUP: antecedent
-
+	[a] the dog
+	[b] the cat
+	[c] the block
+	[a] is red 
+	[d] is chases
+	[a] [d] [b]
+	[d] around [c]
