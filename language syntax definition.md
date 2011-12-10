@@ -39,7 +39,7 @@ When processing a sentence, the definition of each word is looked up from the di
 
 	implies
 		is [a] [b]
-		means
+		->
 			[b] [c] [d]
 			[a] [c] [d]
 
