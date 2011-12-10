@@ -8,7 +8,7 @@
 
 `#`: **anonymous word**--a each `#` is a unique word with no tag name.
 
-`a b c`:linkage--`b` is linked to `c` with a `a` type link.
+`a b c`:linkage--`a` is linked to `c` with a `b` type link.
 
 ### usage: Implications
 Any time a link is made, it's implied linkages are followed and generated.
@@ -23,15 +23,15 @@ When processing a sentence, the definition of each word is looked up from the di
 ### General Rules:
 
 	## General broad definitions
-	the [noun] noun
-	the [verb] verb
+	[noun] the noun
+	[verb] the verb
 	
 	## Specific Ideas
-	is dog [noun]
-	is cat [noun]
+	dog is [noun]
+	cat is [noun]
 	
 	## Processing
-	the<1> # [noun]<2>
+	# the<1> [noun]<2>
 
 ### Implications
 
@@ -49,9 +49,9 @@ When processing a sentence, the definition of each word is looked up from the di
 
 sentence: "The dog chases the cat"
 
-	the [env_var_1] dog
-	the [env_var_2] cat
-	chases [env_var_1] [env_var_2]
+	[env_var_1] the dog
+	[env_var_2] the cat
+	[env_var_1] chases [env_var_2]
 
 
 ### Example of boxing
@@ -70,10 +70,10 @@ Any word that is in a box, must link either to another word in the box, or one o
 
 The expected tree for the block structure above is:
 
-	the [a] dog
-	the [b] cat
-	the [c] block
-	is [a] red 
-	is chases [d]
-	[d] [a] [b]
-	around [d] [c]
+	[a] the dog
+	[b] the cat
+	[c] the block
+	[a] is red 
+	[d] is chases
+	[a] [d] [b]
+	[d] around [c]
