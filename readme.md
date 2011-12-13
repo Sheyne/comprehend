@@ -37,11 +37,8 @@ When processing a sentence, the definition of each word is looked up from the di
 
 #### is
 
-	implies
-		is [a] [b]
-		->
-			[b] [c] [d]
-			[a] [c] [d]
+NEED TO RETHINK			
+			
 
 --> Dec8.5
 
