@@ -37,11 +37,12 @@ When processing a sentence, the definition of each word is looked up from the di
 
 #### is
 
+	[a] is [b]
+	[a] [c] [d]
+	[b] [c] [d]
 	implies
-		is [a] [b]
-		->
-			[b] [c] [d]
-			[a] [c] [d]
+			
+			
 
 --> Dec8.5
 
