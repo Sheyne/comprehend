@@ -55,13 +55,13 @@ sentence: "The dog chases the cat"
 
 The red dog chases the cat around the block. -->
 
-                      +----------------+----+
-	  +---------------+----+           |    |
-	  +--+-------+    |    |           |    |
-	  |  |   +---|    |    +--+---+    |    +--+----+
-	  |  |   |   |    |    |  |   |    |    |  |    |
-      # the red dog chases # the cat around # the block
-	  +--+---+---+----+----+--+---+----+----+--+----+
+                   +--------------+-----+
+	  +------------+-----+        |     |
+	  +-------+    |     |        |     |
+	  |   +---|    |     +---+    |     +----+
+	  |   |   |    |     |   |    |     |    |
+     the red dog chases the cat around the block
+	  +---+---+----+-----+---+----+-----+----+
 
 Any word that is in a box, must link either to another word in the box, or one of the walls. 
 
