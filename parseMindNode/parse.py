@@ -3,14 +3,10 @@ import zipfile
 from pyth.plugins.rtf15.reader import Rtf15Reader
 from pyth.plugins.plaintext.writer import PlaintextWriter
 from cStringIO import StringIO
-
-
+from graph import Node
 
 def unrtf(value):
 	return PlaintextWriter.write(Rtf15Reader.read(StringIO(value))).getvalue()
-
-from query.graph import Node
-
 
 def load_map(f):
 	nodes = {}
