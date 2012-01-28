@@ -35,25 +35,19 @@ query_map = load_map('query.mindnode')
 
 querys = [query_map[key] for key in query_map if str(query_map[key]) == "?"]
 
-class FoundSecondQ(Exception): pass
-
 def match(q, t, anti_back = None):
 	for edge in q.edges:
-		if str(edge[0]) == '?':
-			raise(FoundSecondQ("Woah"))
-		else:
-			if (not anti_back) or ((edge != anti_back)):
-				posible_matches = [e[0] for e in t.edges if e[1] == edge[1] and str(e[0]) == str(edge[0])]
-				if not posible_matches:
+		if not anti_back or edge != anti_back:
+			posible_matches = [e[0] for e in t.edges if e[1] == edge[1] and str(e[0]) == str(edge[0])]
+			if not posible_matches:
+				return False
+			for node in posible_matches:
+				if not match(edge[0], node, q.reciprocal_edge(edge)):
 					return False
-				for node in posible_matches:
-					if not match(edge[0], node, q.reciprocal_edge(edge)):
-						return False
-		return True
-	return False
+	return True
 	
 def query(q, dictionary):
 	return [dictionary[k] for k in dictionary if match(q,dictionary[k])]
 			
 for q in querys:
-	print "!",query(q, dictionary)
+	print query(q, dictionary)
