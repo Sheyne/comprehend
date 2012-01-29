@@ -39,6 +39,7 @@ class Query(object):
 		self.querynodes = self.map.matching("?")
 		
 	def match(self, dictionary):
+		# rework to multiple, unknown querying. 
 		return [dictionary.query(q) for q in self.querynodes]
 
 
