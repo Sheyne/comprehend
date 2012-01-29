@@ -22,10 +22,16 @@ class Map(object):
 		self.edges = set()
 		self.aliases = {}
 		
-	def link(self, a, b):
-		self.edges.add((a,b))
-	def unlink(self, a, b):
-		self.edges.remove((a,b))
+	def link(self, a, *b):z
+		"""Link a to b, b to c, etc.."""
+		for c in b:
+			self.edges.add((a,c))
+			a = c
+	def unlink(self, a, *b):
+		"""Unlink a from b, b from c, etc.."""
+		for c in b:
+			self.edges.remove((a,c))
+			a = c
 	@property
 	def contents(self):
 		return [self.nodes[k] for k in self.nodes]
