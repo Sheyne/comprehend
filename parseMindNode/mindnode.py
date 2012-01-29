@@ -19,9 +19,9 @@ class MindMap(graph.Map):
 				for node in map['mainNodes']:
 					value = unrtf(node['title']['text'])
 					id = node['nodeID']
-					self.add(graph.Node(value), id)
+					self.add(value, id)
 				
 				for association in map['associations']:
 					s = self.get(association['startNodeID'])
 					e = self.get(association['endNodeID'])
-					s.point_at(e)
+					self.link(s,e)
