@@ -23,7 +23,7 @@ class Map(object):
 		self.edges = set()
 		self.aliases = {}
 		
-	def link(self, a, *b):z
+	def link(self, a, *b):
 		"""Link a to b, b to c, etc.."""
 		for c in b:
 			self.edges.add((a,c))
@@ -61,11 +61,11 @@ class Map(object):
 
 	def nodeadd(self, node):
 		"""The interal function that actually adds the node. It returns the node, as it may change it's value. This would happen if the node is blank--becomes anonymous--or if it is "type"--becomes a TypeNode. """
-		if nodes == "":
+		if node == "":
 			a = AnonymousNode()
 			self.nodes.add(a)
 			return a
-		elif nodes == "type":
+		elif node == "type":
 			a = TypeNode()
 			self.nodes.add(a)
 			return a
@@ -77,7 +77,7 @@ class Query(object):
 	"""Initialize query to default values and add the map. """
 	def __init__(self, map):
 		self.map = map
-		self.querynodes = self.map.starting_with("?")
+		self.querynodes = self.map.matching(lambda n: str(n).startswith("?"))
 		
 	def match(self, dictionary):
 		for edge in self.map.edges:
