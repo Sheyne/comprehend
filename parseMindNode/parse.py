@@ -1,7 +1,13 @@
+#! /usr/bin/env python
+
 import graph
 import mindnode
+import sys
 
 dictionary = mindnode.MindMap('dictionary.mindnode')
-query = graph.Query(mindnode.MindMap('query.mindnode'))
+
+queryname = 'queries/%s.mindnode' % sys.argv[1]
+
+query = graph.Query(mindnode.MindMap(queryname))
 
 print query.match(dictionary)
