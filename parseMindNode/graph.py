@@ -2,22 +2,23 @@
 import uuid
 
 class AnonymousNode(object):
+	"""An anonymous node. It acts like a blank node, but is not equal to other blank nodes. """
 	def __str__(self):
 		return "#"
 	
 class TypeNode(AnonymousNode):
+	"""Type node. It is like a normal node with value "type", except that it is not equal to other "type" nodes. TypeNodes are used to avoid type -> type -> type -> ect...."""
 	def __str__(self):
 		return "type"
 
 class Map(object):
-	"""Nodes are now simple strings, except for two special cases: anonymous nodes, which act like blanks, and type nodes, which act like "type" but do not equal each other. 
+	"""
+	A map contains a set of nodes, and a set of edges. 
+	An edge is a tuple containing two nodes, a source and a target: `(source, target)`
 
-		A map contains a set of nodes, and a set of edges. All links are in the edges. 
-
-		To link to nodes, call link and unlink on their map. 
-
-		Read the description of the add function for the new modifications to the design"""
+	To link to nodes, call link and unlink on their map. """
 	def __init__(self):
+		"""Initialize map to default (empty) values. """
 		self.nodes = set()
 		self.edges = set()
 		self.aliases = {}
@@ -38,8 +39,6 @@ class Map(object):
 		Add a node to the map. If the node contains a ".", process it as follows:
 		convert dog.noun to:
 		dog -> `TypeNode()` -> noun
-		
-		TypeNodes are used to avoid type -> type -> type -> ect....
 		"""
 		previous_node = None 
 		for node in nodes.split("."):
@@ -53,9 +52,11 @@ class Map(object):
 				key = None
 		
 	def get(self, key):
+		"""If node was added with a "key", refer to that node. """
 		return self.aliases[key]
 	
 	def matching(self, handler):
+		"""Return all nodes such that handler(node) is True."""
 		return [node for node in self.nodes if handler(node)]
 
 	def nodeadd(self, node):
@@ -73,13 +74,12 @@ class Map(object):
 			return node
 	
 class Query(object):
+	"""Initialize query to default values and add the map. """
 	def __init__(self, map):
 		self.map = map
 		self.querynodes = self.map.starting_with("?")
 		
 	def match(self, dictionary):
 		for edge in self.map.edges:
-			"""
-			add a compare function that allows for wildcards, and for Anonymous nodes to equal each other. 
-			"""
+			"""TODO: Add a compare function that allows for wildcards, and for Anonymous nodes to equal each other. """
 			print edge
