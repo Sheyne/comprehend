@@ -55,11 +55,8 @@ class Map(object):
 	def get(self, key):
 		return self.aliases[key]
 	
-	def matching(self, s):
-		return [self.nodes[k] for k in self.nodes if str(self.nodes[k]) == str(s)]
-	
-	def starting_with(self, s):
-		return [k for k in self.nodes if str(k).startswith(str(s))]
+	def matching(self, handler):
+		return [node for node in self.nodes if handler(node)]
 
 	def nodeadd(self, node):
 		"""The interal function that actually adds the node. It returns the node, as it may change it's value. This would happen if the node is blank--becomes anonymous--or if it is "type"--becomes a TypeNode. """
