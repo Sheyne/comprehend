@@ -32,10 +32,7 @@ class Map(object):
 		for c in b:
 			self.edges.remove((a,c))
 			a = c
-	@property
-	def contents(self):
-		return [self.nodes[k] for k in self.nodes]
-	
+			
 	def nodeadd(self, node):
 		if nodes == "":
 			a = AnonymousNode()
