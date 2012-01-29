@@ -33,19 +33,6 @@ class Map(object):
 			self.edges.remove((a,c))
 			a = c
 			
-	def nodeadd(self, node):
-		if nodes == "":
-			a = AnonymousNode()
-			self.nodes.add(a)
-			return a
-		elif nodes == "type":
-			a = TypeNode()
-			self.nodes.add(a)
-			return a
-		else:
-			self.nodes.add(node)
-			return node
-	
 	def add(self, nodes, key = None):
 		"""
 		Add a node to the map. If the node contains a ".", process it as follows:
@@ -74,6 +61,20 @@ class Map(object):
 	def starting_with(self, s):
 		return [k for k in self.nodes if str(k).startswith(str(s))]
 
+	def nodeadd(self, node):
+		"""The interal function that actually adds the node. It returns the node, as it may change it's value. This would happen if the node is blank--becomes anonymous--or if it is "type"--becomes a TypeNode. """
+		if nodes == "":
+			a = AnonymousNode()
+			self.nodes.add(a)
+			return a
+		elif nodes == "type":
+			a = TypeNode()
+			self.nodes.add(a)
+			return a
+		else:
+			self.nodes.add(node)
+			return node
+	
 class Query(object):
 	def __init__(self, map):
 		self.map = map
