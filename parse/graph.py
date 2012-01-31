@@ -109,8 +109,8 @@ def compare_nodes(a,b):
 		a == b
 	)
 
-def compare_edges(a,b):
-	return compare_nodes(a[0],b[0]) and compare_nodes(a[1],b[1])
+def compare_edges(a,b, *args):
+	return compare_nodes(a[0],b[0],*args) and compare_nodes(a[1],b[1],*args)
 
 def copy_attrs(source, target):
 	target.__dict__.update(source.__dict__)
