@@ -11,7 +11,10 @@ class AnonymousNode(object):
 		AnonymousNode.uniq+=1
 	def __str__(self):
 		return "."
-	
+
+class LooseAnonymousNode(AnonymousNode): pass
+class LockedAnonymousNode(AnonymousNode): pass
+
 class TypeNode(AnonymousNode):
 	"""Type node. It is like a normal node with value "type", except that it is not equal to other "type" nodes. TypeNodes are used to avoid type -> type -> type -> ect...."""
 	def __str__(self):
@@ -71,10 +74,7 @@ class Map(object):
 				self.aliases[key] = node
 				key = None
 			previous_node = node
-	
-	def matching_edges(self, handler, *args):
-		return matching_edges(handler, self.edges, *args)
-	
+		
 	def get(self, key):
 		"""If node was added with a "key", refer to that node. """
 		return self.aliases[key]
@@ -82,6 +82,9 @@ class Map(object):
 	def matching(self, handler, *args):
 		"""Return all nodes such that handler(node) is True."""
 		return [node for node in self.nodes if handler(node, *args)]
+
+	def matching_edges(self, handler, *args):
+		return matching_edges(handler, self.edges, *args)
 
 	def nodeadd(self, node):
 		"""The interal function that actually adds the node. It returns the node, as it may change it's value. This would happen if the node is blank--becomes anonymous--or if it is "type"--becomes a TypeNode. """
@@ -93,15 +96,35 @@ class Map(object):
 		else:
 			self.nodes.add(node)
 			return node
-
+	
 def matching_edges(handler,edges, *args):
 	return [edge for edge in edges if handler(edge, *args)]
 
 def compare_nodes(a,b):
-	return isinstance(a, WildNode) or isinstance(b, WildNode) or str(a) == str(b)
+	return (
+		isinstance(a, WildNode) or
+		isinstance(b, WildNode) or
+		(isinstance(a, TypeNode) and isinstance(b, TypeNode)) or
+		(isinstance(a, AnonymousNode) and isinstance(b, LooseAnonymousNode)) or
+		a == b
+	)
 
 def compare_edges(a,b):
 	return compare_nodes(a[0],b[0]) and compare_nodes(a[1],b[1])
+
+def copy_attrs(source, target):
+	target.__dict__.update(source.__dict__)
+	return target
+
+def replace_class(l, t1, t2, strict = False):
+	cmp_fun = (lambda a,b: a.__class__ == b) if strict else isinstance
+	return [tuple(
+				copy_attrs(n, t2()) if cmp_fun(n, t1) else n for n in e
+			) for e in l]
+
+def replace_node(l, n1, n2):
+	return [tuple(n2 if n1 == n else n for n in e) for e in l]
+
 
 class Query(object):
 	"""Initialize query to default values and add the map. """
@@ -110,16 +133,27 @@ class Query(object):
 		self.querynodes = self.map.matching(isinstance,QueryNode)
 		
 	def match(self, dictionary):
-		edge = self.map.edges.__iter__().next() # get any random edge
-		return self.rmatch(edge, self.map.edges, dictionary.edges)
+		self.solutions = []
+		edge_list = replace_class(self.map.edges, AnonymousNode, LooseAnonymousNode, strict = True)
+		self.rmatch(edge_list, dictionary)
+		return self.solutions
 		
-	def rmatch(self, edge, m_edges, d_edges):
-		#print "aaaaaaaaa", edge, "bbbbbbbbb", m_edges, "ccccccccc", d_edges
-		matches = matching_edges(compare_edges, d_edges, edge)
-		if matches:
-			for match in matches:
-				n_edges = m_edges.copy()
-				n_edges 
-				print match
-		else:
-			return False
+	def rmatch(self, edge_list, dictionary, query_matches = {}, indent = ' '):
+		query_matches = query_matches.copy()
+		if not edge_list:
+			print indent, "Made it to depth"
+			self.solutions.append(query_matches)
+			return True
+		working_edge = edge_list.pop()
+		print "\n",indent, "Working edge:",working_edge
+		for posible_solution in dictionary.matching_edges(compare_edges,working_edge):
+			print indent, "posible solution:",posible_solution
+			wel = edge_list #working edge list
+			for pos in range(2):
+				node = working_edge[pos]
+				if isinstance(node, LooseAnonymousNode) or isinstance(node, QueryNode) or isinstance(node, TypeNode):
+					wel = replace_node(wel, node, posible_solution[pos])
+					if isinstance(node, QueryNode):
+						print indent, "Posible query answer for %s is %s" % (node.var, posible_solution[pos])
+						query_matches[node.var] = posible_solution[pos]
+			self.rmatch(wel, dictionary, query_matches, indent = indent+'  ')
