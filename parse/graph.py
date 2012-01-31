@@ -100,14 +100,15 @@ class Map(object):
 def matching_edges(handler,edges, *args):
 	return [edge for edge in edges if handler(edge, *args)]
 
-def compare_nodes(a,b):
-	return (
-		isinstance(a, WildNode) or
-		isinstance(b, WildNode) or
+def compare_nodes(a,b, wildcard_blackset = frozenset()):
+	res = (
+		((b not in wildcard_blackset) and isinstance(a, WildNode)) or
+		((a not in wildcard_blackset) and isinstance(b, WildNode)) or
 		(isinstance(a, TypeNode) and isinstance(b, TypeNode)) or
 		(isinstance(a, AnonymousNode) and isinstance(b, LooseAnonymousNode)) or
 		a == b
 	)
+	return res
 
 def compare_edges(a,b, *args):
 	return compare_nodes(a[0],b[0],*args) and compare_nodes(a[1],b[1],*args)
@@ -138,15 +139,16 @@ class Query(object):
 		self.rmatch(edge_list, dictionary)
 		return self.solutions
 		
-	def rmatch(self, edge_list, dictionary, query_matches = {}, indent = ' '):
+	def rmatch(self, edge_list, dictionary, query_matches = {}, used_nodes = set(), indent = ' '):
 		query_matches = query_matches.copy()
+		used_nodes = used_nodes.copy()
 		if not edge_list:
 			print indent, "Made it to depth"
 			self.solutions.append(query_matches)
 			return True
 		working_edge = edge_list.pop()
 		print "\n",indent, "Working edge:",working_edge
-		for posible_solution in dictionary.matching_edges(compare_edges,working_edge):
+		for posible_solution in dictionary.matching_edges(compare_edges,working_edge,used_nodes):
 			print indent, "posible solution:",posible_solution
 			wel = edge_list #working edge list
 			for pos in range(2):
@@ -156,4 +158,5 @@ class Query(object):
 					if isinstance(node, QueryNode):
 						print indent, "Posible query answer for %s is %s" % (node.var, posible_solution[pos])
 						query_matches[node.var] = posible_solution[pos]
-			self.rmatch(wel, dictionary, query_matches, indent = indent+'  ')
+				used_nodes.add(posible_solution[pos])
+			self.rmatch(wel, dictionary, query_matches, used_nodes, indent = indent+'  ')
