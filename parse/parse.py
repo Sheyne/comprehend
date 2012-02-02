@@ -17,22 +17,14 @@ date of start: %s
 
 """ % (datetime.now(), )
 
+print "dictionary.edges:", dictionary.edges
+
+a = graph.Node.node("hi")
+b = graph.Node.node("you")
+c = graph.Node.node("are")
+c = graph.Node.node("test")
+d = graph.Node.node("1")
+
+
 for solution in query.match(dictionary):
 	print "the real solution is:",solution
-
-
-a = graph.AnonymousNode()
-b = graph.LooseAnonymousNode()
-c = graph.AnonymousNode()
-
-l = [(a, "hi"), ("hi", b)]
-
-l2 = graph.replace_node(l, b, c)
-print "printing l2"
-print l2
-
-print "printing 1"
-print graph.matching_edges(graph.compare_edges,l,("hi",b))
-print "printing 2"
-print graph.matching_edges(graph.compare_edges,l2,("hi",b))
-

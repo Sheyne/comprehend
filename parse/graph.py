@@ -2,39 +2,99 @@
 import uuid
 
 
-class AnonymousNode(object):
-	uniq = 0
-	"""An anonymous node. It acts like a blank node, but is not equal to other blank nodes. """
+class Node(object):
+	"""API methods"""
+	def match(self, target):
+		return target if self.matchcmp(target) else None
+
+	@property
+	def value(self):
+		return self.args[0] if len(self.args) == 1 else self.args
+
+	def copy(self):
+		return self.__class__(*self.args)
+
+	"""Methods subclasses are encouraged to override. """
+	def initialize(self): pass
+	
+	def matchcmp(self, target):
+		return self == target
+		
+	def __eq__(self, target):
+		return self.args == target.args
+
+	@classmethod
+	def claims(self, word):
+		return True
+
+	"""Internals"""	
+		
+	def __ne__(self, target):
+		return not self == target
+
 	def __init__(self, *args):
 		self.args = args
-		self.uniq = AnonymousNode.uniq
-		AnonymousNode.uniq+=1
+		try:
+			self.initialize(args)
+		except TypeError:
+			self.initialize()
+	
 	def __str__(self):
-		return "."
+		return str(self.value)
 
-class LooseAnonymousNode(AnonymousNode): pass
-class LockedAnonymousNode(AnonymousNode): pass
+	def __repr__(self):
+		return "Node(%s)" % repr(self.value)
+	
+	@classmethod
+	def node(self, *args):
+		for sc in self.__subclasses__():
+			node = sc.node(*args)
+			if node:
+				return node
+		return self(*args) if self.claims(args[0]) else None
+	
+class AnonymousNode(Node):
+	"""An anonymous node. It acts like a blank node, but is not equal to other blank nodes. """
+	claim_string = ""
+	def initialize(self):
+		self.wild = False
+	
+	@classmethod
+	def claims(self, word):
+		return self.claim_string == ""
+		
+	def __eq__(self, target):
+		return id(self) == id(target)
+	
+	def wildcopy(self):
+		c = self.copy()
+		c.wild = True
+		return c
+	
+	def matchcmp(self, target):
+		try:
+			return Node.__eq__(self, target) if (self.wild or target.wild) else self == target
+		except AttributeError: # above will raise AttributeError if target is not an AnonymousNode
+			return False
 
-class TypeNode(AnonymousNode):
-	"""Type node. It is like a normal node with value "type", except that it is not equal to other "type" nodes. TypeNodes are used to avoid type -> type -> type -> ect...."""
-	def __str__(self):
-		return "type"
-class WildNode(AnonymousNode):
-	def __str__(self):
-		return "*"
-class QueryNode(WildNode):
-	def __init__(self, var):
-		self.var = var
-	def __str__(self):
-		return "?"
+class TypeNode(AnonymousNode): 
+	claim_string = "type"
 
-special_nodes = {
-	"": (AnonymousNode, str.__eq__),
-	"type": (TypeNode, str.__eq__),
-	"?": (QueryNode, str.startswith),
-	"*": (WildNode, str.__eq__),
-}
+class WildNode(AnonymousNode): 
+	claim_string = "*"
+	def matchcmp(self, target):
+		return target
 
+class QueryNode(WildNode): 
+	def initialize(self, varnames):
+		self.varnames = varnames
+		try:
+			self.varname = varnames[0]
+		except IndexError: pass
+	@classmethod
+	def claims(self, word):
+		return word.startswith("?")
+	
 
 class Map(object):
 	"""
@@ -72,7 +132,6 @@ class Map(object):
 				self.link(previous_node, self.nodeadd("type"), node)
 			elif key:
 				self.aliases[key] = node
-				key = None
 			previous_node = node
 		
 	def get(self, key):
@@ -83,49 +142,40 @@ class Map(object):
 		"""Return all nodes such that handler(node) is True."""
 		return [node for node in self.nodes if handler(node, *args)]
 
-	def matching_edges(self, handler, *args):
-		return matching_edges(handler, self.edges, *args)
-
 	def nodeadd(self, node):
-		"""The interal function that actually adds the node. It returns the node, as it may change it's value. This would happen if the node is blank--becomes anonymous--or if it is "type"--becomes a TypeNode. """
-		for k in special_nodes:
-			if special_nodes[k][1](node, k):
-				a = special_nodes[k][0](node)
-				self.nodes.add(a)
-				return a
-		else:
-			self.nodes.add(node)
-			return node
-	
-def matching_edges(handler,edges, *args):
-	return [edge for edge in edges if handler(edge, *args)]
+		"""Makes a new node object from node, adds it to self.nodes and returns it. """
+		node = Node.node(node)
+		self.nodes.add(node)
+		return node
 
-def compare_nodes(a,b, wildcard_blackset = frozenset()):
-	res = (
-		((b not in wildcard_blackset) and isinstance(a, WildNode)) or
-		((a not in wildcard_blackset) and isinstance(b, WildNode)) or
-		(isinstance(a, TypeNode) and isinstance(b, TypeNode)) or
-		(isinstance(a, AnonymousNode) and isinstance(b, LooseAnonymousNode)) or
-		a == b
-	)
+def match_edge(edge, dictionary):
+	"""Return a list of (edge, new edge) pairs. The new edge is the edge that is returned as a match from
+	edge.match(edge). Neither match may result in None. """
+	for de in dictionary.edges:
+		a = (edge, (edge[0].match(de[0]), edge[1].match(de[1])))
+		if a[1][0] and a[1][1]:
+			yield a
+
+def tuple_replace(source, old, new):
+	if isinstance(old, QueryNode):
+		print old, new
+	return tuple(new if a == old else a for a in source)
+
+def edge_replace(source, old_edge, new_edge):
+	"""Convert old_edge[a] to new_edge[a] in source. """
+	res = source
+	for replace_pair in zip(old_edge, new_edge):
+		res = tuple_replace(res, *replace_pair)
 	return res
 
-def compare_edges(a,b, *args):
-	return compare_nodes(a[0],b[0],*args) and compare_nodes(a[1],b[1],*args)
+def match_edges(dictionary, edge, edge_list):
+	"""Take an edge and look through the dictionary for posible matches. 
+	Copy edge_list and store the results of the match in it. yield every posible edge_list. """
+	for old_edge, new_edge in match_edge(edge, dictionary):
+		yield [edge_replace(source, old_edge, new_edge) for source in edge_list]
 
-def copy_attrs(source, target):
-	target.__dict__.update(source.__dict__)
-	return target
-
-def replace_class(l, t1, t2, strict = False):
-	cmp_fun = (lambda a,b: a.__class__ == b) if strict else isinstance
-	return [tuple(
-				copy_attrs(n, t2()) if cmp_fun(n, t1) else n for n in e
-			) for e in l]
-
-def replace_node(l, n1, n2):
-	return [tuple(n2 if n1 == n else n for n in e) for e in l]
-
+def wildize_anonymi(edge_list):
+	return [tuple(n.wildcopy() if isinstance(n, AnonymousNode) else n for n in edge) for edge in edge_list]
 
 class Query(object):
 	"""Initialize query to default values and add the map. """
@@ -135,7 +185,7 @@ class Query(object):
 		
 	def match(self, dictionary):
 		self.solutions = []
-		edge_list = replace_class(self.map.edges, AnonymousNode, LooseAnonymousNode, strict = True)
+		edge_list = wildize_anonymi(self.map.edges)
 		self.rmatch(edge_list, dictionary)
 		return self.solutions
 		
@@ -147,16 +197,7 @@ class Query(object):
 			self.solutions.append(query_matches)
 			return True
 		working_edge = edge_list.pop()
-		print "\n",indent, "Working edge:",working_edge
-		for posible_solution in dictionary.matching_edges(compare_edges,working_edge,used_nodes):
+		print indent, "edge list", edge_list
+		for posible_solution in match_edges(dictionary, working_edge, edge_list):
 			print indent, "posible solution:",posible_solution
-			wel = edge_list #working edge list
-			for pos in range(2):
-				node = working_edge[pos]
-				if isinstance(node, LooseAnonymousNode) or isinstance(node, QueryNode) or isinstance(node, TypeNode):
-					wel = replace_node(wel, node, posible_solution[pos])
-					if isinstance(node, QueryNode):
-						print indent, "Posible query answer for %s is %s" % (node.var, posible_solution[pos])
-						query_matches[node.var] = posible_solution[pos]
-				used_nodes.add(posible_solution[pos])
-			self.rmatch(wel, dictionary, query_matches, used_nodes, indent = indent+'  ')
+			self.rmatch(posible_solution, dictionary, indent = indent + "  ")
