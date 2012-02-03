@@ -27,4 +27,7 @@ d = graph.Node.node("1")
 
 
 for solution in query.match(dictionary):
-	print "the real solution is:",solution
+	print "A solution"
+	for key in solution:
+		print key, repr(solution[key])
+		print [edge for edge in dictionary.edges if edge[0] == solution[key]]

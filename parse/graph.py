@@ -43,7 +43,7 @@ class Node(object):
 		return str(self.value)
 
 	def __repr__(self):
-		return "Node(%s)" % repr(self.value)
+		return "%s(%s)" % (self.__class__.__name__, repr(self.value))
 	
 	@classmethod
 	def node(self, *args):
