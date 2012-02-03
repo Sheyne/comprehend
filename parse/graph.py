@@ -195,20 +195,20 @@ class Query(object):
 	def rmatch(self, edge_list, dictionary, query_matches = {}, consumed_edges = set(), indent = ' '):
 		query_matches = query_matches.copy()
 		consumed_edges = consumed_edges.copy()
-		print indent, "edge list", edge_list
+		#print indent, "edge list", edge_list
 		if not edge_list:
-			print indent, "Made it to depth", query_matches
+			#print indent, "Made it to depth", query_matches
 			self.solutions.append(query_matches)
 			return True
 		working_edge = edge_list.pop()
-		print indent,"working with edge", working_edge
+		#print indent,"working with edge", working_edge
 		for new_working_edge, ps in match_edges(dictionary, working_edge, edge_list, consumed_edges):
 			consumed_edges.add(new_working_edge)
 			for old_node, new_node in zip(working_edge, new_working_edge):
 				if isinstance(old_node, QueryNode):
-					print indent, 
+					#print indent, 
 					"wow pro working edge", working_edge, new_working_edge
 					
 					query_matches[old_node] = new_node
-			print indent, "posible solution:",ps
+			#print indent, "posible solution:",ps
 			self.rmatch(ps, dictionary, query_matches,consumed_edges, indent = indent + "  ")
