@@ -61,7 +61,7 @@ class AnonymousNode(Node):
 	
 	@classmethod
 	def claims(self, word):
-		return self.claim_string == ""
+		return self.claim_string == word
 		
 	def __eq__(self, target):
 		return id(self) == id(target)
@@ -91,6 +91,11 @@ class QueryNode(WildNode):
 		try:
 			self.varname = varnames[0]
 		except IndexError: pass
+
+	def __eq__(self, target):
+		#allow for usage as dictionary keys
+		return Node.__eq__(self, target)
+
 	@classmethod
 	def claims(self, word):
 		return word.startswith("?")
@@ -148,17 +153,15 @@ class Map(object):
 		self.nodes.add(node)
 		return node
 
-def match_edge(edge, dictionary):
+def match_edge(edge, dictionary, consumed_edges):
 	"""Return a list of (edge, new edge) pairs. The new edge is the edge that is returned as a match from
 	edge.match(edge). Neither match may result in None. """
 	for de in dictionary.edges:
 		a = (edge, (edge[0].match(de[0]), edge[1].match(de[1])))
-		if a[1][0] and a[1][1]:
+		if a[1][0] and a[1][1] and not a[1] in consumed_edges:
 			yield a
 
 def tuple_replace(source, old, new):
-	if isinstance(old, QueryNode):
-		print old, new
 	return tuple(new if a == old else a for a in source)
 
 def edge_replace(source, old_edge, new_edge):
@@ -168,11 +171,11 @@ def edge_replace(source, old_edge, new_edge):
 		res = tuple_replace(res, *replace_pair)
 	return res
 
-def match_edges(dictionary, edge, edge_list):
+def match_edges(dictionary, edge, edge_list, consumed_edges):
 	"""Take an edge and look through the dictionary for posible matches. 
 	Copy edge_list and store the results of the match in it. yield every posible edge_list. """
-	for old_edge, new_edge in match_edge(edge, dictionary):
-		yield [edge_replace(source, old_edge, new_edge) for source in edge_list]
+	for old_edge, new_edge in match_edge(edge, dictionary, consumed_edges):
+		yield new_edge, [edge_replace(source, old_edge, new_edge) for source in edge_list]
 
 def wildize_anonymi(edge_list):
 	return [tuple(n.wildcopy() if isinstance(n, AnonymousNode) else n for n in edge) for edge in edge_list]
@@ -189,15 +192,23 @@ class Query(object):
 		self.rmatch(edge_list, dictionary)
 		return self.solutions
 		
-	def rmatch(self, edge_list, dictionary, query_matches = {}, used_nodes = set(), indent = ' '):
+	def rmatch(self, edge_list, dictionary, query_matches = {}, consumed_edges = set(), indent = ' '):
 		query_matches = query_matches.copy()
-		used_nodes = used_nodes.copy()
+		consumed_edges = consumed_edges.copy()
+		print indent, "edge list", edge_list
 		if not edge_list:
-			print indent, "Made it to depth"
+			print indent, "Made it to depth", query_matches
 			self.solutions.append(query_matches)
 			return True
 		working_edge = edge_list.pop()
-		print indent, "edge list", edge_list
-		for posible_solution in match_edges(dictionary, working_edge, edge_list):
-			print indent, "posible solution:",posible_solution
-			self.rmatch(posible_solution, dictionary, indent = indent + "  ")
+		print indent,"working with edge", working_edge
+		for new_working_edge, ps in match_edges(dictionary, working_edge, edge_list, consumed_edges):
+			consumed_edges.add(new_working_edge)
+			for old_node, new_node in zip(working_edge, new_working_edge):
+				if isinstance(old_node, QueryNode):
+					print indent, 
+					"wow pro working edge", working_edge, new_working_edge
+					
+					query_matches[old_node] = new_node
+			print indent, "posible solution:",ps
+			self.rmatch(ps, dictionary, query_matches,consumed_edges, indent = indent + "  ")
