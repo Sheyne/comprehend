@@ -28,8 +28,14 @@ def match_edges(edge1, edge2):
 	return r if r[0] and r[1] else False
 
 class graph(object):
-	def __init__(self):
-		self.edges = set()
+	def __init__(self, edges = set()):
+		self.edges = edges.copy()
+	
+	def combine(self, target, action = set.union):
+		return graph(action(self.edges, target.edges))
+	
+	def load(self, target, action = set.union):
+		self.edges = action(self.edges, target.edges)
 	
 	def unique_num(self):
 		return uuid.uuid4()
@@ -49,10 +55,9 @@ class graph(object):
 		node_o = self._specialize(nodes.pop(0))
 		for node in nodes:
 			node = self._specialize(node)
-			t = self.specialize("type")
-			self.add(node_o, t)
-			self.add(t, node)
-		
+			t = self._specialize("type")
+			self._add(node_o, t)
+			self._add(t, node)
 		return node_o
 		
 	def _specialize(self, a):

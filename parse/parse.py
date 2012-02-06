@@ -6,16 +6,20 @@ import sys
 import os
 from datetime import datetime
 
-dictionary = mindnode.MindMap(os.path.expanduser('dictionary.mindnode'))
-
-queryname = os.path.expanduser('queries/test1.mindnode')
-
-query_dictionary = mindnode.MindMap(queryname)
-
 print """Begining Processing:
 date of start: %s
 
 """ % (datetime.now(), )
 
-for result in dictionary.query(query_dictionary):
+dictionary = mindnode.MindMap(os.path.expanduser('dictionary.mindnode'))
+
+enviroment = mindnode.MindMap(os.path.expanduser('enviroment.mindnode'))
+
+enviroment.load(dictionary)
+
+queryname = os.path.expanduser('queries/test1.mindnode')
+
+query_dictionary = mindnode.MindMap(queryname)
+
+for result in enviroment.query(query_dictionary):
 	print result
