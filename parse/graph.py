@@ -53,11 +53,13 @@ class graph(object):
 	def specialize(self, a):
 		nodes = a.split(".")
 		node_o = self._specialize(nodes.pop(0))
+		node_holder = node_o
 		for node in nodes:
 			node = self._specialize(node)
 			t = self._specialize("type")
-			self._add(node_o, t)
+			self._add(node_holder, t)
 			self._add(t, node)
+			node_holder = node
 		return node_o
 		
 	def _specialize(self, a):
