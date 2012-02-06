@@ -1,48 +1,95 @@
+import uuid
+
+
+def node_replace(node, old, new):
+	for old_n, new_n in zip(old, new):
+		if old_n == node:
+			return new_n
+	return node
+
+def nodes_replace(edge, old, new):
+	return tuple(node_replace(node, old, new) for node in edge)
+
+def edge_replace(edges, old, new):
+	return tuple(nodes_replace(edge, old, new) for edge in edges)
+
+def dasherize(edges):
+	return set(tuple(n.replace("_", "-") for n in edge) for edge in edges)
+	
+def match(a,b):
+	if a == b:
+		return b
+	a_ = a.split("-")
+	b_ = tuple(x for y in b.split("_") for x in y.split("-"))
+	return "_".join(b_) if a_[0] == b_[0] or a_[0] == "*" or a_[0].startswith("?") else False
+
+def match_edges(edge1, edge2):
+	r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
+	return r if r[0] and r[1] else False
+
 class graph(object):
 	def __init__(self):
 		self.edges = set()
-		self.references = {}
-		self._unique_num = 0
 	
-	def unique_num():
-		self._unique_num += 1
-		return self._unique_num
+	def unique_num(self):
+		return uuid.uuid4()
 
-	def refers(key, node = None):
-		if node:
-			self.references[key] = node
-			return node
-		else:
-			return self.references[key]
-
-	def _add(a, b):
-		self.edges.add(self.specialize(a,b))
+	def _add(self, a, b):
+		self.edges.add(self.edge_specialize(a,b))
 	
-	def keypop(self, keys, a):
-		if keys:
-			self.refers(keys.pop(0), a)
-
-	def add(*nodes, keys = tuple()):
+	def add(self, *nodes):
 		nodes = list(nodes)
-		keys = list(keys)
 		a = nodes.pop(0)
-		self.keypop(keys, a)
 		for i in nodes:
 			self._add(a,i)
 			a = i
-			self.keypop(keys, a)
 
+	def specialize(self, a):
+		nodes = a.split(".")
+		node_o = self._specialize(nodes.pop(0))
+		for node in nodes:
+			node = self._specialize(node)
+			t = self.specialize("type")
+			self.add(node_o, t)
+			self.add(t, node)
+		
+		return node_o
+		
 	def _specialize(self, a):
 		if a == "":
-			return "anon/%s" % self.unique_num()
+			return "_%s" % self.unique_num()
 		elif a == "type":
-			return "type/%s" % self.unique_num()
+			return "type_%s" % self.unique_num()
 		else:
 			return a
 		
-	def specialize(self, *a):
-		return tuple(self._specialize(b) for b in a)
+	def edge_specialize(self, *a):
+		return tuple(self.specialize(b) for b in a)
 	
 	@property
 	def nodes(self):
 		return set(n for e in self.edges for n in e)
+	
+	def matching(self, e):
+		return [edge for edge in self.edges if match_edges(e, edge)]
+
+	def query(self, q):
+		self.solutions = []
+		
+		self._query(tuple(dasherize(q.edges)))
+		return self.solutions
+	
+	def _query(self, edges, solutionset = {}, consumed_edges = set()):
+		if not edges:
+			self.solutions.append(solutionset)
+		else:
+			edge_, edges = edges[0], edges[1:]
+			for edge in self.matching(edge_):
+				if not edge in consumed_edges:
+					solutionset = solutionset.copy()
+					consumed_edges_c = consumed_edges.copy()
+					consumed_edges_c.add(edge)
+					for key, value in zip(edge_, edge):
+						if key.startswith("?"):
+							solutionset[key] = value
+					self._query(edge_replace(edges, edge_, edge), solutionset, consumed_edges_c)
