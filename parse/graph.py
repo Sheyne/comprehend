@@ -21,7 +21,7 @@ def match(a,b):
 		return b
 	a_ = a.split("-")
 	b_ = tuple(x for y in b.split("_") for x in y.split("-"))
-	return "_".join(b_) if a_[0] == b_[0] or a_[0] == "*" or a_[0].startswith("?") else False
+	return "_".join(b_) if a_[0] == b_[0] or a_[0] == "*" or "?" in a_[0] else False
 
 def match_edges(edge1, edge2):
 	r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
@@ -99,6 +99,6 @@ class graph(object):
 					consumed_edges_c = consumed_edges.copy()
 					consumed_edges_c.add(edge)
 					for key, value in zip(edge_, edge):
-						if key.startswith("?"):
+						if "?" in key:
 							solutionset[key] = value
 					self._query(edge_replace(edges, edge_, edge), solutionset, consumed_edges_c)
