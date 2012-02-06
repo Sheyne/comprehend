@@ -23,8 +23,10 @@ class MindMap(graph.graph):
 					value = unrtf(node['title']['text'])
 					id = node['nodeID']
 					relations[id] = self.specialize(value)
-				
+					relations[id+"_"] = self.last_specialized
+
 				for association in map['associations']:
-					s = relations[association['startNodeID']]
+					suffix = "_" if association["startArrow"] == 4 else ""
+					s = relations[association['startNodeID']+suffix]
 					e = relations[association['endNodeID']]
 					self.add(s,e)

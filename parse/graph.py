@@ -62,11 +62,13 @@ class graph(object):
 		
 	def _specialize(self, a):
 		if a == "":
-			return "_%s" % self.unique_num()
+			out = "_%s" % self.unique_num()
 		elif a == "type":
-			return "type_%s" % self.unique_num()
+			out = "type_%s" % self.unique_num()
 		else:
-			return a
+			out = a
+		self.last_specialized = out
+		return out
 		
 	def edge_specialize(self, *a):
 		return tuple(self.specialize(b) for b in a)
