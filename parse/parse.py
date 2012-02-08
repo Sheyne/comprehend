@@ -2,37 +2,24 @@
 
 import graph
 import mindnode
-import sys
-import os
-from datetime import datetime
 
-dictionary = mindnode.MindMap(os.path.expanduser('dictionary.mindnode'))
+# load a graph from a mindnode type graph
+dictionary = mindnode.mindmap('dictionary.mindnode')
 
-queryname = os.path.expanduser('queries/test1.mindnode')
+# dump the graph into 'dictionary.edgepairgraph'
+dictionary.dump(open("dictionary.edgepairgraph","w"))
 
-query = graph.Query(mindnode.MindMap(queryname))
+# load another graph from a mindnode type graph. 
+enviroment = mindnode.mindmap('enviroment.mindnode')
 
-print """Begining Processing:
-date of start: %s
+# merge dictionary into the enviroment
+enviroment.union(dictionary)
 
-""" % (datetime.now(), )
+# load another graph from a mindnode type graph. 
+query_dictionary = mindnode.mindmap('queries/test1.mindnode')
+# this graph will be used as a query. 
 
-for solution in query.match(dictionary):
-	print "the real solution is:",solution
-
-
-a = graph.AnonymousNode()
-b = graph.LooseAnonymousNode()
-c = graph.AnonymousNode()
-
-l = [(a, "hi"), ("hi", b)]
-
-l2 = graph.replace_node(l, b, c)
-print "printing l2"
-print l2
-
-print "printing 1"
-print graph.matching_edges(graph.compare_edges,l,("hi",b))
-print "printing 2"
-print graph.matching_edges(graph.compare_edges,l2,("hi",b))
-
+# run the query on the envieroment
+for result in enviroment.query(query_dictionary):
+	# print out result dictionaries. 
+	print result

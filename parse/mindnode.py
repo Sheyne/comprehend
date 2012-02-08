@@ -9,19 +9,25 @@ import graph
 def unrtf(value):
 	return PlaintextWriter.write(Rtf15Reader.read(StringIO(value))).getvalue()
 
-class MindMap(graph.Map):
-	def __init__(self, filename):
-		super(self.__class__, self).__init__()
-		with zipfile.ZipFile(filename, 'r') as z:
-			with z.open('contents.xml') as contents:
-				dom = plistlib.readPlist(contents)
-				map = dom['mindMap']
-				for node in map['mainNodes']:
-					value = unrtf(node['title']['text'])
-					id = node['nodeID']
-					self.add(value, id)
-				
-				for association in map['associations']:
-					s = self.get(association['startNodeID'])
-					e = self.get(association['endNodeID'])
-					self.link(s,e)
+def mindmap(filename):
+	g = graph.graph()
+	with zipfile.ZipFile(filename, 'r') as z:
+		with z.open('contents.xml') as contents:
+			dom = plistlib.readPlist(contents)
+			map = dom['mindMap']
+			
+			relations = {}
+			
+			for node in map['mainNodes']:
+				value = unrtf(node['title']['text'])
+				id = node['nodeID']
+				relations[id] = g.specialize(value)
+				relations[id+"_"] = g.last_specialized
+	
+			for association in map['associations']:
+				suffix = "_" if association["startArrow"] == 4 else ""
+				s = relations[association['startNodeID']+suffix]
+				e = relations[association['endNodeID']]
+				g.add(s,e)
+
+	return g
