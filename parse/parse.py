@@ -6,20 +6,14 @@ import sys
 import os
 from datetime import datetime
 
-print """Begining Processing:
-date of start: %s
+dictionary = mindnode.mindmap(os.path.expanduser('dictionary.mindnode'))
 
-""" % (datetime.now(), )
+dictionary.dump(open("dictionary.comprehenddictionary","w"))
 
-dictionary = mindnode.MindMap(os.path.expanduser('dictionary.mindnode'))
+enviroment = mindnode.mindmap(os.path.expanduser('enviroment.mindnode'))
+enviroment.union(dictionary)
 
-enviroment = mindnode.MindMap(os.path.expanduser('enviroment.mindnode'))
-
-enviroment.load(dictionary)
-
-queryname = os.path.expanduser('queries/test1.mindnode')
-
-query_dictionary = mindnode.MindMap(queryname)
+query_dictionary = mindnode.mindmap(os.path.expanduser('queries/test1.mindnode'))
 
 for result in enviroment.query(query_dictionary):
 	print result

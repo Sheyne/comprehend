@@ -34,7 +34,7 @@ class graph(object):
 	def combine(self, target, action = set.union):
 		return graph(action(self.edges, target.edges))
 	
-	def load(self, target, action = set.union):
+	def union(self, target, action = set.union):
 		self.edges = action(self.edges, target.edges)
 	
 	def unique_num(self):
