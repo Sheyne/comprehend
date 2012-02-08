@@ -23,10 +23,6 @@ def match(a,b):
 	b_ = tuple(x for y in b.split("_") for x in y.split("-"))
 	return "_".join(b_) if a_[0] == b_[0] or a_[0] == "*" or "?" in a_[0] else False
 
-def match_edges(edge1, edge2):
-	r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
-	return r if r[0] and r[1] else False
-
 class graph(object):
 	def __init__(self, edges = set()):
 		self.edges = edges.copy()
@@ -67,6 +63,8 @@ class graph(object):
 			out = "_%s" % self.unique_num()
 		elif a == "type":
 			out = "type_%s" % self.unique_num()
+		elif a == ">":
+			out = ">_%s" % self.unique_num()
 		else:
 			out = a
 		self.last_specialized = out
@@ -79,8 +77,12 @@ class graph(object):
 	def nodes(self):
 		return set(n for e in self.edges for n in e)
 	
+	def match_edges(self, edge1, edge2):
+		r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
+		return r if r[0] and r[1] else False
+
 	def matching(self, e):
-		return [edge for edge in self.edges if match_edges(e, edge)]
+		return [edge for edge in self.edges if self.match_edges(e, edge)]
 
 	def query(self, q):
 		self.solutions = []
@@ -102,3 +104,10 @@ class graph(object):
 						if "?" in key:
 							solutionset[key] = value
 					self._query(edge_replace(edges, edge_, edge), solutionset, consumed_edges_c)
+	def dump(self, f):
+		for e in self.edges:
+			f.write("%s\t%s\n" % (e[0], e[1]))
+
+	def load(self, f):
+		for line in f:
+			self.add(*line.split("\t"))
