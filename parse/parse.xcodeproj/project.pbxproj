@@ -1,0 +1,194 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		365F525514E9814100FD4BB8 /* parse.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = parse.py; sourceTree = "<group>"; };
+		365F525714E9815300FD4BB8 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		365F525914E9815300FD4BB8 /* empty.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.mindnode; sourceTree = "<group>"; };
+		365F525A14E9815300FD4BB8 /* mindnode.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = mindnode.py; sourceTree = "<group>"; };
+		365F525D14E9815300FD4BB8 /* dictionary.edgepairgraph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.edgepairgraph; sourceTree = "<group>"; };
+		365F525E14E9815300FD4BB8 /* dictionary.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = dictionary.mindnode; sourceTree = "<group>"; };
+		365F525F14E9815300FD4BB8 /* enviroment.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = enviroment.mindnode; sourceTree = "<group>"; };
+		365F526114E9815300FD4BB8 /* dog.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = dog.mindnode; sourceTree = "<group>"; };
+		365F526214E9815300FD4BB8 /* test1.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mindnode; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		365F524814E9811900FD4BB8 = {
+			isa = PBXGroup;
+			children = (
+				365F525514E9814100FD4BB8 /* parse.py */,
+				365F525614E9815300FD4BB8 /* graph */,
+				365F525C14E9815300FD4BB8 /* resources */,
+			);
+			sourceTree = "<group>";
+		};
+		365F525614E9815300FD4BB8 /* graph */ = {
+			isa = PBXGroup;
+			children = (
+				365F525714E9815300FD4BB8 /* __init__.py */,
+				365F525914E9815300FD4BB8 /* empty.mindnode */,
+				365F525A14E9815300FD4BB8 /* mindnode.py */,
+			);
+			path = graph;
+			sourceTree = "<group>";
+		};
+		365F525C14E9815300FD4BB8 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				365F525D14E9815300FD4BB8 /* dictionary.edgepairgraph */,
+				365F525E14E9815300FD4BB8 /* dictionary.mindnode */,
+				365F525F14E9815300FD4BB8 /* enviroment.mindnode */,
+				365F526014E9815300FD4BB8 /* queries */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		365F526014E9815300FD4BB8 /* queries */ = {
+			isa = PBXGroup;
+			children = (
+				365F526114E9815300FD4BB8 /* dog.mindnode */,
+				365F526214E9815300FD4BB8 /* test1.mindnode */,
+			);
+			path = queries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		365F524F14E9811900FD4BB8 /* parse */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 365F525214E9811900FD4BB8 /* Build configuration list for PBXLegacyTarget "parse" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = parse;
+			passBuildSettingsInEnvironment = 1;
+			productName = parse;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		365F524A14E9811900FD4BB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Sheyne Anderson";
+			};
+			buildConfigurationList = 365F524D14E9811900FD4BB8 /* Build configuration list for PBXProject "parse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 365F524814E9811900FD4BB8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				365F524F14E9811900FD4BB8 /* parse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		365F525014E9811900FD4BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		365F525114E9811900FD4BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		365F525314E9811900FD4BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		365F525414E9811900FD4BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		365F524D14E9811900FD4BB8 /* Build configuration list for PBXProject "parse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				365F525014E9811900FD4BB8 /* Debug */,
+				365F525114E9811900FD4BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		365F525214E9811900FD4BB8 /* Build configuration list for PBXLegacyTarget "parse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				365F525314E9811900FD4BB8 /* Debug */,
+				365F525414E9811900FD4BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 365F524A14E9811900FD4BB8 /* Project object */;
+}

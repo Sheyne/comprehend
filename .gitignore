@@ -6,3 +6,6 @@ main.xcscheme
 .DS_Store
 
 *(Autosaved)
+
+*.xcuserstate
+*.xcworkspacedata
