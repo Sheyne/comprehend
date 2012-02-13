@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		365F525514E9814100FD4BB8 /* parse.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = parse.py; sourceTree = "<group>"; };
+		365F525514E9814100FD4BB8 /* parse.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = parse.py; sourceTree = "<group>"; usesTabs = 0; };
 		365F525714E9815300FD4BB8 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		365F525914E9815300FD4BB8 /* empty.mindnode */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.mindnode; sourceTree = "<group>"; };
 		365F525A14E9815300FD4BB8 /* mindnode.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = mindnode.py; sourceTree = "<group>"; };
