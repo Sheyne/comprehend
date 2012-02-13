@@ -3,8 +3,13 @@
 import graph
 import graph.mindnode
 
+# jump into the dir of the script (xcode launches from some wierd place. 
+import os
+os.chdir(os.path.dirname(__file__))
+
 # load a graph from a mindnode type graph
 dictionary = graph.mindnode.mindmap('resources/dictionary.mindnode')
+graph.mindnode.write(dictionary, "test1.mindnode")
 
 # dump the graph into 'dictionary.edgepairgraph'
 dictionary.dump(open("resources/dictionary.edgepairgraph","w"))
