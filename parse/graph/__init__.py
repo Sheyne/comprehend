@@ -47,7 +47,7 @@ class graph(object):
 			a = i
 
 	def specialize(self, a):
-		nodes = a.split(".")
+		nodes = a.split(">")
 		node_o = self._specialize(nodes.pop(0))
 		node_holder = node_o
 		for node in nodes:
