@@ -27,7 +27,7 @@ def main():
 
 
 if __name__ == "__main__":
-    # jump into the dir of the script (xcode launches from some wierd place. 
+    # jump into the dir of the script (xcode launches from some wierd place). 
     import os
     os.chdir(os.path.dirname(__file__))
     main()
