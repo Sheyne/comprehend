@@ -57,7 +57,7 @@ def simpleAssociation(node1, node2):
 	}
 
 def mindmap(filename):
-	g = graph.graph()
+	g = graph.Graph()
 	map = readMindMap(filename)['mindMap']
 	
 	relations = {}
