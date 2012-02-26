@@ -52,19 +52,14 @@ class graph(object):
 		node_holder = node_o
 		for node in nodes:
 			node = self._specialize(node)
-			t = self._specialize("type")
-			self._add(node_holder, t)
-			self._add(t, node)
+			self._add(node_holder, node)
 			node_holder = node
 		return node_o
 		
 	def _specialize(self, a):
-		if a == "":
+		if a == "" or a == "@":
 			out = "_%s" % self.unique_num()
-		elif a == "type":
-			out = "type_%s" % self.unique_num()
-		elif a == ">":
-			out = ">_%s" % self.unique_num()
+			self._add(out, "anonymous+node")
 		else:
 			out = a
 		self.last_specialized = out

@@ -21,9 +21,14 @@ def main():
     # this graph will be used as a query. 
 
     # run the query on the envieroment
+    keep_it_up = True
     for result in enviroment.query(query_dictionary):
         # print out result dictionaries. 
-        print result
+        for key in result:
+            print "%s is %s." % ((key.replace("?", "") or "Your answer"), result[key])
+        keep_it_up = False
+    if keep_it_up:
+        print "No results found. "
 
 
 if __name__ == "__main__":
