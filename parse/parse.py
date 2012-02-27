@@ -14,7 +14,7 @@ def main():
     enviroment = mindnode.mindmap('resources/enviroment.mindnode')
 
     # merge dictionary into the enviroment
-    enviroment.union(dictionary)
+    enviroment.mutate(dictionary)
 
     # load another graph from a mindnode type graph. 
     query_dictionary = mindnode.mindmap('resources/queries/test1.mindnode')

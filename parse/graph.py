@@ -1,70 +1,5 @@
 import uuid
 
-
-def _node_replace(node, old, new):
-	"""
-	    If node is a value in `old`, return the value of `new` at the same position as the position of `old` that matches `node`. 
-
-	    `node` = the existing node
-	    `old` = iterable of values to compare node to
-	    `new` = iterable of what to return if node == old
-
-	    Example:
-	    >>> _node_replace('a', ('a','b'), ('c','d'))
-	    'c'
-	"""
-	for old_n, new_n in zip(old, new):
-		if old_n == node:
-			return new_n
-	return node
-
-def _nodes_replace(edge, old, new):
-	""" Take an edge, replace valuse of `old` with `new` on each node in `edge`. 
-	    """
-	return tuple(_node_replace(node, old, new) 
-	             for node in edge)
-
-def _edge_replace(edges, old, new):
-	"""Take a set of edges, replace all nodes that equal a value of `old` with the corresponding value in `new`. """
-	return tuple(_nodes_replace(edge, old, new)
-	             for edge in edges)
-
-def make_loose_matching(edges):
-	"""Take anonymous nodes and make them match any anonymous node by replacing "@" with "~". """
-
-	ret = set(tuple(n.replace("@","~",1)
-	                if n.startswith("@")
-	                else n for n in edge)
-	          for edge in edges)
-	return ret
-
-def match(a,b):
-	"""Return `b` if `b` matches `a`. Otherwise return `False`. 
-
-	    For a match to be `True`, one of the following must be satisfied: 
-	        `a` == `b`
-	        `a` is a loose anonymous node and `b` is an anonymous node. 
-	        `a` contains "?"
-	        `a` is "*"
-
-	    Example:
-	    >>> match('a', 'b')
-	    False
-	    >>> match('a', 'a')
-	    'a'
-	    >>> match('?a', 'b')
-	    'b'
-	    >>> match('*', 'b')
-	    'b'
-	    >>> match('~3476781', '@16712')
-	    '@16712'
-	    """
-	return (b if a == b
-	        or a.startswith("~") and b.startswith(("@", "~"))
-	        or "?" in a
-	        or a == "*"
-	        else False)
-
 class Graph(object):
 	"""A graph is at it's core a set of edges. Edges are 2-tuples of nodes. The idea is that an edge: `(a, b)`, means that `a` points at `b`."""
 
@@ -225,6 +160,73 @@ class Graph(object):
 		for line in f:
 			self.add(*line.split("\t"))
 
+def _node_replace(node, old, new):
+	"""
+		If node is a value in `old`, return the value of `new` at the same position as the position of `old` that matches `node`. 
+
+		`node` = the existing node
+		`old` = iterable of values to compare node to
+		`new` = iterable of what to return if node == old
+
+		Example:
+		>>> _node_replace('a', ('a','b'), ('c','d'))
+		'c'
+	"""
+	for old_n, new_n in zip(old, new):
+		if old_n == node:
+			return new_n
+	return node
+
+
+
 if __name__ == "__main__":
 	import doctest
 	doctest.testmod()
+
+def _nodes_replace(edge, old, new):
+	""" Take an edge, replace valuse of `old` with `new` on each node in `edge`. 
+	    """
+	return tuple(_node_replace(node, old, new) 
+	             for node in edge)
+
+def _edge_replace(edges, old, new):
+	"""Take a set of edges, replace all nodes that equal a value of `old` with the corresponding value in `new`. """
+	return tuple(_nodes_replace(edge, old, new)
+	             for edge in edges)
+
+def make_loose_matching(edges):
+	"""Take anonymous nodes and make them match any anonymous node by replacing "@" with "~". """
+
+	ret = set(tuple(n.replace("@","~",1)
+	                if n.startswith("@")
+	                else n for n in edge)
+	          for edge in edges)
+	return ret
+
+def match(a,b):
+	"""Return `b` if `b` matches `a`. Otherwise return `False`. 
+
+	    For a match to be `True`, one of the following must be satisfied: 
+		`a` == `b`
+		`a` is a loose anonymous node and `b` is an anonymous node. 
+		`a` contains "?"
+		`a` is "*"
+
+	    Example:
+	    >>> match('a', 'b')
+	    False
+	    >>> match('a', 'a')
+	    'a'
+	    >>> match('?a', 'b')
+	    'b'
+	    >>> match('*', 'b')
+	    'b'
+	    >>> match('~3476781', '@16712')
+	    '@16712'
+	    """
+	return (b if a == b
+	        or a.startswith("~") and b.startswith(("@", "~"))
+	        or "?" in a
+	        or a == "*"
+	        else False)
+
