@@ -4,14 +4,12 @@
 Human language is a dificult storage medium for computers. Its ambiguous and complex structure makes it hard to process. Computers cannot yet effectivly extract relevant information from a document. Most information retreval systems (IRS)s do a simple word for word search. Others use probablistic models and n-grams to try to make a more educated guess at the information that a user desires, but none yet looks at the meaning of the document or query sentence. 
 
 ## Proposed Solution
-	TODO: Re-phrase the following to indicate the the new title
-
-The project's goal is to create an Information Retrieval System (IRS). The IRS will parse English sentences and build a model. This model can be easily added to a database of learned information, or used to query an existing database. 
+To solve this problem, I suggest that the sentences that compose the document(s) be modeled in such a way as to be easily processed, queries, and combined. 
 
 ## Procedure
 
-1. The project must be able to simply model natural language.
-2. The project must be able to use this model to better interpret natural language documents. 
+1. Design a model for a natural language sentence. 
+2. Use model to extract informtion from document(s). 
 
 ## Modeling 
 
