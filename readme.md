@@ -4,9 +4,10 @@
 
 The project's goal is to create an Information Retrieval System (IRS). The IRS will parse English sentences and build a model. This model can be easily added to a database of learned information, or used to query an existing database. 
 
-## Specifications
+## Procedure
 
-The project must be able to model english sentences, and retrieve information from those models. 
+1. The project must be able to simply model natural language.
+2. The project must be able to use this model to better interpret natural language documents. 
 
 ## Modeling 
 
