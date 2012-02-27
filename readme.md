@@ -53,3 +53,5 @@ The model of a question takes a similar form to the model of a statement. The di
 
 ## Retrieval
 We can take model of a question and "query" it on a sentence model. The process takes the edges of the question model looks for matches to them in the enviroment (knowledge) model. This allows the program to fill in the unknowns in the query, and return a result. 
+
+	Here I'll add an explination of the internal query algorithm.
