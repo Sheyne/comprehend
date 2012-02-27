@@ -58,10 +58,8 @@ We can take model of a question and "query" it on a sentence model. The process 
 	
 	
 # Points I need to hit:
-Research -- still need
 
-Design Criteria -- the above
-
-Preliminary Designs or Prototypes -- still need
-
-Results -- still need to write up
+* Research -- still need
+* Design Criteria -- the above
+* Preliminary Designs or Prototypes -- still need
+* Results -- still need to write up
