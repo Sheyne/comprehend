@@ -1,5 +1,7 @@
 import uuid
 
+class TagError(KeyError): pass
+
 class Graph(object):
 	"""A graph is at it's core a set of edges. Edges are 2-tuples of nodes. The idea is that an edge: `(a, b)`, means that `a` points at `b`."""
 
@@ -8,6 +10,7 @@ class Graph(object):
 
 		    If `edges` is passed, use a copy of `edges` for the object's edges attibute. 
 		"""
+		self.tagbuckets = {}
 		self.edges = edges.copy()
 
 	def combine(self, target, action = set.union):
@@ -22,6 +25,16 @@ class Graph(object):
 		    """
 
 		return Graph(action(self.edges, target.edges))
+
+	def has_edges(self, node1, *nodes):
+		print node1, nodes
+		pointer = node1
+		for node in nodes:
+			print self.matching((pointer, node))
+			if not self.matching((pointer, node)):
+				return False
+			pointer = node
+		return True
 
 	def mutate(self, target, action = set.union):
 		"""Add the edges of the `target` graph to `self` with the union set operation. If the action parameter is set, use a different set operation. 
@@ -42,9 +55,27 @@ class Graph(object):
 	def unique_num(self):
 		"""Return a unique number. Currently returns a UUID based off the time. This should not be counted on. All you should count on is the number being unique and consisiting of letters and numbers."""
 		return str(uuid.uuid4()).replace("-", "")
+	
+	def graph_with_tag(self, tag):
+		return Graph(self.edges_with_tag(tag))
 
-	def add(self, *nodes):
-		"""Create edges for each combination of nodes.
+	def edges_with_tag(self, tag):
+		try:
+			return self.tagbuckets[tag]
+		except KeyError:
+			raise(TagError(tag))
+			
+	def add_tag(self, tag, first_node, *nodes):
+		"""Like add, but it also tags the nodes."""
+		first_node = self.specialize(first_node, tag=tag)
+		ticker = first_node
+		for i in nodes:
+			self.__add(ticker,i, tag=tag)
+			ticker = i	
+		return first_node
+
+	def add(self, first_node, *nodes):
+		"""Create edges for each pair of nodes.
 
 		    Example:
 		    >>> g = Graph()
@@ -52,30 +83,28 @@ class Graph(object):
 		    >>> g.edges
 		    set([('a', 'b'), ('b', 'c')])
 		    """
-		nodes = list(nodes)
-		a = nodes.pop(0)
-		for i in nodes:
-			self.__add(a,i)
-			a = i
-
-	def specialize(self, a):
+		return self.add_tag(None, first_node, *nodes)
+		
+	def specialize(self, a, tag=None):
 		"""Internal method. It does the syntactical sugar. """
+		if not isinstance(a, basestring):
+			raise(TypeError("node is not a string"))
 		nodes = a.split(".")
 		node_o = self.__specialize(nodes.pop(0))
 		node_holder = node_o
 		for node in nodes:
 			node = self.__specialize(node)
-			self.__add(node_holder, node)
+			self.__add(node_holder, node, tag=tag)
 			node_holder = node
 		return node_o
 
-	def edge_specialize(self, *a):
+	def edge_specialize(self, tag=None, *a):
 		"""Specialize all edges in iterator `a`."""
-		return tuple(self.specialize(b) for b in a)
+		return tuple(self.specialize(b, tag=tag) for b in a)
 
 	@property
 	def nodes(self):
-		"""Return all nodes in an object. 
+		"""Return all nodes in an object. This has to be generated on the fly and is not efficient.  
 
 		    Example:
 		    >>> g = Graph()
@@ -85,15 +114,15 @@ class Graph(object):
 		    """
 		return set(n for e in self.edges for n in e)
 
-	def match_edges(self, edge1, edge2):
-		r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
-		return r if r[0] and r[1] else False
-
+	def hasnode(self, n):
+		"""Runs into the same efficiency problems as nodes. """
+		return n in self.nodes
+	
 	def matching(self, e):
 		"""Look for all edges matching `e`."""
-		return [edge for edge in self.edges if self.match_edges(e, edge)]
+		return [edge for edge in self.edges if match_edges(e, edge)]
 
-	def query(self, q):
+	def query(self, q, loosen_anons = True):
 		""" Run a query graph on self.
 
 		    Returns a list of query restult dictionaries. A query result dictionay has query nodes as keys, and the values that they could be as values. 
@@ -113,30 +142,48 @@ class Graph(object):
 
 		"""
 
-		self.solutions = []
+		solutions = []
+		if not isinstance(q, Graph):
+			raise(TypeError("q is not a graph object", q))
+		qes = q.edges
+		if loosen_anons:
+			qes = make_loose_matching(qes)
+		self.__query(tuple(qes), solutions)
+		return solutions
 
-		self.__query(tuple(make_loose_matching(q.edges)))
-		return self.solutions
-
-	def __add(self, a, b):
+	def __add(self, a, b, tag=None):
 		"""Internal function to add an edge with (`a`, `b`). """
-		self.edges.add(self.edge_specialize(a,b))
+		specialized = self.edge_specialize(tag, a,b)
+		if tag is not None:
+			try:
+				tagbucket = self.tagbuckets[tag]
+			except KeyError:
+				tagbucket = set()
+				self.tagbuckets[tag] = tagbucket
+			tagbucket.add(specialized)
+		self.edges.add(specialized)
 
-	def __specialize(self, a):
+	def __specialize(self, a, tag=None):
 		"""Helper method for `graph.specialize`. """
-		if a == "" or a == "@":
+		if a == "~":
+			out = "~%s" % self.unique_num()
+			# make the following DRY?
+			self.__add(out, "anonymous+node", tag=tag)
+		
+		elif a == "" or a == "@":
 			out = "@%s" % self.unique_num()
-			self.__add(out, "anonymous+node")
+			self.__add(out, "anonymous+node", tag=tag)
+		
 		else:
 			out = a
 		self.last_specialized = out
 		return out
 
-	def __query(self, edges, solutionset = {}, consumed_edges = set()):
+	def __query(self, edges, solutions, solutionset = {}, consumed_edges = set()):
 		""" Recursive internal query method. """
 
 		if not edges:
-			self.solutions.append(solutionset)
+			solutions.append(solutionset)
 		else:
 			edge_, edges = edges[0], edges[1:]
 			for edge in self.matching(edge_):
@@ -147,7 +194,7 @@ class Graph(object):
 					for key, value in zip(edge_, edge):
 						if "?" in key:
 							solutionset[key] = value
-					self.__query(_edge_replace(edges, edge_, edge), solutionset, consumed_edges_c)
+					self.__query(_edge_replace(edges, edge_, edge), solutions, solutionset, consumed_edges_c)
 
 	""" File I/O. """
 	def dump(self, f):
@@ -179,10 +226,6 @@ def _node_replace(node, old, new):
 
 
 
-if __name__ == "__main__":
-	import doctest
-	doctest.testmod()
-
 def _nodes_replace(edge, old, new):
 	""" Take an edge, replace valuse of `old` with `new` on each node in `edge`. 
 	    """
@@ -202,6 +245,10 @@ def make_loose_matching(edges):
 	                else n for n in edge)
 	          for edge in edges)
 	return ret
+
+def match_edges(edge1, edge2):
+	r = tuple(match(n1, n2) for n1, n2 in zip(edge1,edge2)) 
+	return r if r[0] and r[1] else False
 
 def match(a,b):
 	"""Return `b` if `b` matches `a`. Otherwise return `False`. 
@@ -227,6 +274,18 @@ def match(a,b):
 	return (b if a == b
 	        or a.startswith("~") and b.startswith(("@", "~"))
 	        or "?" in a
-	        or a == "*"
+	        or "*" in a
 	        else False)
 
+if __name__ == "__main__":
+	a = Graph()
+	b = Graph()
+	a.add_tag("tag", "a", "b")
+	a.add_tag("tag", "b", "c")
+	a.add("b", "d")
+	b.add("?a", "b")
+	b.add("b", "?c")
+	
+	from magicate import prettify
+	for solset in a.graph_with_tag("tag").query(b, True):
+		print solset
