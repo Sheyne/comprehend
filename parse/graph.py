@@ -2,6 +2,9 @@ import uuid
 
 class TagError(KeyError): pass
 
+def unique_num():
+	return str(uuid.uuid4()).replace("-", "")
+
 class Graph(object):
 	"""A graph is at it's core a set of edges. Edges are 2-tuples of nodes. The idea is that an edge: `(a, b)`, means that `a` points at `b`."""
 
@@ -52,10 +55,13 @@ class Graph(object):
 		""" Returns a copy of the object. """
 		return Graph(self.edges)
 
+	def tags(self):
+		return self.tagbuckets.keys()
+
 	def unique_num(self):
 		"""Return a unique number. Currently returns a UUID based off the time. This should not be counted on. All you should count on is the number being unique and consisiting of letters and numbers."""
-		return str(uuid.uuid4()).replace("-", "")
-	
+		return unique_num()
+
 	def graph_with_tag(self, tag):
 		return Graph(self.edges_with_tag(tag))
 
@@ -64,7 +70,7 @@ class Graph(object):
 			return self.tagbuckets[tag]
 		except KeyError:
 			raise(TagError(tag))
-			
+
 	def add_tag(self, tag, first_node, *nodes):
 		"""Like add, but it also tags the nodes."""
 		first_node = self.specialize(first_node, tag=tag)
@@ -84,7 +90,7 @@ class Graph(object):
 		    set([('a', 'b'), ('b', 'c')])
 		    """
 		return self.add_tag(None, first_node, *nodes)
-		
+
 	def specialize(self, a, tag=None):
 		"""Internal method. It does the syntactical sugar. """
 		if not isinstance(a, basestring):
@@ -97,6 +103,25 @@ class Graph(object):
 			self.__add(node_holder, node, tag=tag)
 			node_holder = node
 		return node_o
+
+	def downwindedges(self,node, do_not_pass=set()):
+		changed = True
+		downwindedges = set()
+		downwindnodes = set((node, ))
+		while changed:
+			changed = False
+			for edge in self.edges:
+				if (edge not in downwindedges
+				    and edge[1] not in do_not_pass
+				    and edge[0] in downwindnodes):
+					changed = True
+					downwindedges.add(edge)
+					for n in edge:
+						downwindnodes.add(n)
+		return downwindedges
+
+	def downwindgraph(self, node, do_not_pass=set()):
+		return Graph(self.downwindedges(node, do_not_pass=do_not_pass))
 
 	def edge_specialize(self, tag=None, *a):
 		"""Specialize all edges in iterator `a`."""
@@ -117,12 +142,15 @@ class Graph(object):
 	def hasnode(self, n):
 		"""Runs into the same efficiency problems as nodes. """
 		return n in self.nodes
-	
+
 	def matching(self, e):
 		"""Look for all edges matching `e`."""
 		return [edge for edge in self.edges if match_edges(e, edge)]
 
-	def query(self, q, loosen_anons = True):
+	def replace(self, a, b):
+		return Graph(set((tuple(b if node == a else node for node in edge) for edge in self.edges)))
+
+	def query(self, q, loosen_anons=True):
 		""" Run a query graph on self.
 
 		    Returns a list of query restult dictionaries. A query result dictionay has query nodes as keys, and the values that they could be as values. 
@@ -163,17 +191,35 @@ class Graph(object):
 			tagbucket.add(specialized)
 		self.edges.add(specialized)
 
+	def add_info(self, more_info):
+		more_info = more_info.copy()
+		
+		verbs = set(match['verb?'] for match in more_info.query(type_query("verb"))) 
+	
+		noun_query = type_query("noun")
+		noun_query.add("action+lookup", "noun?")
+	
+	
+		for match in more_info.query(noun_query):
+			noun_graph = more_info.downwindgraph(match['noun?'], verbs)
+			query = noun_graph.replace(match['noun?'], "noun?")
+			for result in self.query(query):
+				more_info = more_info.replace(match['noun?'], result["noun?"])
+		self.mutate(more_info)	
+		
+	
 	def __specialize(self, a, tag=None):
 		"""Helper method for `graph.specialize`. """
 		if a == "~":
 			out = "~%s" % self.unique_num()
 			# make the following DRY?
 			self.__add(out, "anonymous+node", tag=tag)
-		
+
 		elif a == "" or a == "@":
 			out = "@%s" % self.unique_num()
 			self.__add(out, "anonymous+node", tag=tag)
-		
+		elif a == "*":
+			out = "*%s" % self.unique_num()
 		else:
 			out = a
 		self.last_specialized = out
@@ -257,7 +303,7 @@ def match(a,b):
 		`a` == `b`
 		`a` is a loose anonymous node and `b` is an anonymous node. 
 		`a` contains "?"
-		`a` is "*"
+		`a` contains "*"
 
 	    Example:
 	    >>> match('a', 'b')
@@ -280,12 +326,21 @@ def match(a,b):
 if __name__ == "__main__":
 	a = Graph()
 	b = Graph()
+	a.add("a", "b")
 	a.add_tag("tag", "a", "b")
 	a.add_tag("tag", "b", "c")
+	a.add_tag("tag2", "ad", "b")
+	a.add_tag("tag2", "b", "cd")
 	a.add("b", "d")
 	b.add("?a", "b")
 	b.add("b", "?c")
-	
+
 	from magicate import prettify
-	for solset in a.graph_with_tag("tag").query(b, True):
+	for solset in a.graph_with_tag("tag2").query(b, True):
 		print solset
+
+def type_query(t):
+	query = Graph()
+	query.add(t+"?", "*1", t)
+	query.add(t+"?", "anonymous+node")
+	return query

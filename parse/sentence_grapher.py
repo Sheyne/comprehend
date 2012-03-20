@@ -1,6 +1,7 @@
 from collections import deque
 import graph as graphmodule
 
+class WordNotFound(KeyError): pass
 class PullError(Exception): pass
 
 class Action(object):
@@ -57,7 +58,7 @@ class Pull(Action):
 		except KeyError:
 			if override and not self.optional:
 				raise PullError("Requested word does not yet exist. ")
-
+			value = None
 		self.finish(action_generator, datastore, value)
 
 	def _look_right(self, action_generator, datastore):
@@ -98,11 +99,14 @@ class Datastore(object):
 		handles = self.handles
 		for key in handles:
 			val = handles[key]
+			hans_to_remove = set()
 			for han in val:
 				act = han.action
 				if act.optional:
 					act.finish(han.action_generator, han.datastore)
-					val.remove(han)
+					hans_to_remove.add(han)
+			for han in hans_to_remove:
+				val.remove(han)
 					
 		hl = tuple((key, handles[key]) for key in handles if handles[key])
 		if hl:
@@ -148,13 +152,19 @@ class WordMeanings(object):
 				self.table[key] = value
 	
 	def actions(self, word):
-		return self.table[word](word)
-	
+		try:
+			f = self.table[word]
+		except KeyError:
+			raise WordNotFound(word)
+		return f(word)
 	def start_action(self, word, datastore):
 		gen = self.actions(word)
 		gen.next().do(gen, datastore)
 	
-	def instantiate(self, word, token = "@"):
+	def instantiate(self, word, tag = None, token = "@"):
 		instance = self.graph.specialize(token)
-		self.graph.add(instance, word)
+		if tag is not None:
+			self.graph.add_tag(tag, instance, word)			
+		else:
+			self.graph.add(instance, word)
 		return instance
