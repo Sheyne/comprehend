@@ -1,3 +1,6 @@
+## Note
+This readme is slightly out of date. The main code sits in [parse](https://github.com/Sheyne/comprehend/tree/master/parse). 
+
 # Graphical Sentence Modeling for Computerized Interpretation of Natural Language 
 
 ## Problem
