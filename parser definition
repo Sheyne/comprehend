@@ -1,0 +1,12 @@
+the: R; R -> lookup+instance
+
+L? -> adjective: anon_func; O -> query+L
+L? -> noun: anon_func; O -> query+L
+L? -> verb: anon_func; O -> query+L
+
+L? -> * -> verb: L; query+L -> R
+L? -> * -> noun: L; query+L -> R
+L? -> * -> adjective: R; R -> query+L
+
+
+the green dog chases a cat
