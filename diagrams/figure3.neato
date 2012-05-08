@@ -1,0 +1,6 @@
+digraph g{
+	dog -> noun
+	cat -> noun
+	chases -> verb
+	blue -> adjective
+}
