@@ -15,6 +15,14 @@ class Graph(object):
 		"""
 		self.tagbuckets = {}
 		self.edges = edges.copy()
+	
+	def as_pydot_graph(self):
+		""" Return a copy of self as a pydot graph. """
+		import pydot
+		g = pydot.Dot()
+		for edge in self.edges:
+			g.add_edge(pydot.Edge(*edge))
+		return g
 
 	def combine(self, target, action = set.union):
 		"""Add the edges of the `target` graph to `self` with the union set operation. 

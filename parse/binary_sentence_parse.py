@@ -29,7 +29,9 @@ class WordType(object):
 
 	def __repr__(self):
 		return "%s(%s)" % (type(self).__name__, self.word)
-	
+
+class AnyWordType(WordType): pass	
+class Determiner(WordType): pass
 
 class Instantiating(WordType):
 	def instantiate(self, word):
@@ -38,7 +40,6 @@ class Instantiating(WordType):
 		self.graph = graph
 		self.word = self.instantiate(word)
 	
-class Determiner(WordType): pass
 class Adjective(Instantiating): pass
 class Adverb(Instantiating): pass
 class Verb(Instantiating): pass
@@ -49,10 +50,11 @@ lookup_table = {
 	"dog": Noun,
 	"cat": Noun,
 	"chases": Verb,
+	"climbs": Verb,
 	"quickly": Adverb,
-	"blue": Adjective,
-	"green": Adjective,
-	"bright": Adjective,
+	"blue": Noun,
+	"green": Noun,
+	"bright": Noun,
 }
 class WordNotFound(KeyError): pass
 
@@ -71,51 +73,48 @@ linkba = (invert, link, returna)
 
 main_pair_actions = {
 	Determiner:{
-		Noun: linkba,
+		Noun: linkab_b,
 	},
-	Adjective:{
-		Adjective: linkba,
-		Noun: linkba,
-		Verb: linkba,
+	Noun:{
+		Noun: linkab_b,
+		Verb: linkab,
 	},
 	Adverb:{
-		Adverb: linkba,
-		Verb: linkba,
+		Adverb: linkab,
+		Verb: linkab,
 	},
 	Verb:{
 		Noun: linkab,
 	},
-	Noun:{
-		Verb: linkab_b,
-	},
 }
 
-outstanding = []
+class DefinitionNotFound(TypeError):
+	def __str__(self):
+		return "No definition found for: " + ", ".join(t.__name__ for t in self.args)
 
-
-def clearout(l):
-	try:
-		a, b = l[-2:]
-	except ValueError:
-		return
-	try:
-		actions = main_pair_actions[type(a)]
-	except:
-		raise(TypeError("Unknown type: %s", type(a)))
-	try:
-		funlist = actions[type(b)]
-	except:
-		return
-	l[-2:] = run_function_list(funlist, (a,b)),
-	clearout(l)
-	
 def parse_sentence(sentence):
 	g = Graph()
-	for word in sentence.split():
+	lastword = None
+	for word in reversed(sentence.split()):
 		word = classify(word, g)
-		outstanding.append(word)
-		clearout(outstanding)
+		if lastword is not None:
+			try:
+				actions = main_pair_actions[type(word)]
+			except KeyError:
+				raise(DefinitionNotFound(type(word), AnyWordType))
+
+			try:
+				funlist = actions[type(lastword)]
+			except KeyError:
+				raise(DefinitionNotFound(type(word), type(lastword)))
+			
+			lastword = run_function_list(funlist, (word,lastword))
+		else:
+			lastword = word
+
 	return g
 	
 if __name__ == "__main__":
-	print parse_sentence("the dog chases the blue cat")
+	res = parse_sentence("the bright green dog chases the blue cat") 
+	from magicate import prettify
+	print prettify(res)

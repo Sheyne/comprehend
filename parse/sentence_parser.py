@@ -9,6 +9,8 @@ dictionary = mindnode.mindmap('resources/dictionary.mindnode')
 database = graphmodule.Graph()
 database.mutate(dictionary)
 
+def withoutdictionary():
+	return database.combine(dictionary, set.difference)
 last_query = None
 
 while True:
@@ -22,8 +24,10 @@ while True:
 			else:
 				query.add(*line.split(" "))
 		print database.query(query)		
+	elif command.endswith('.png'):
+		withoutdictionary().as_pydot_graph().write_png(command)
 	elif 'pp' == command:
-		print prettify(database.combine(dictionary, set.difference))
+		print prettify(withoutdictionary())
 	elif "exit" == command:
 		break
 	elif ">" == command:
